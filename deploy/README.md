@@ -219,6 +219,10 @@ using the existing Grafana container admin credentials without printing them,
 and verifies the provisioned dashboard. Normal Clayton deployment also invokes
 this script. Existing dashboards are not replaced.
 
+UI edits can be saved in Grafana's database. Export saved dashboard JSON back
+to `provisioning/dashboards/clayton/locomotive-batteries.json` before changing or
+redeploying that source: provisioning updates can overwrite database edits.
+
 The battery selector uses VM jobs `LB101` through `LB105`; default `LB103` has
 recent recordings. For offline batteries, use their recording dates in the time
 picker. The five last-seen cards use actual sample timestamps over 90 days,
