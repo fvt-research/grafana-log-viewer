@@ -6,6 +6,7 @@ import logging
 import sqlite3
 import tempfile
 from contextlib import closing
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from asammdf import MDF
@@ -31,19 +32,25 @@ def decode_file(path: Path, job: str, server: str, dbc_folder: Path) -> int:
             },
             ignore_value2text_conversion=True,
         ) as decoded:
-            for signal in decoded.iter_channels(raw=True):
-                signal = signal.physical(ignore_value2text_conversions=True)
-                samples += send_signal_using_json_lines(
-                    signal,
-                    start_time=decoded.start_time,
-                    job=job,
-                    server=server,
-                    skip_signal_range_check=True,
-                    raise_on_error=True,
-                    extra_labels={
-                        "bus": next(iter(signal.display_names)).split(".")[0]
-                    },
-                )
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                futures = [
+                    executor.submit(
+                        send_signal_using_json_lines,
+                        signal.physical(ignore_value2text_conversions=True),
+                        start_time=decoded.start_time,
+                        job=job,
+                        server=server,
+                        skip_signal_range_check=True,
+                        raise_on_error=True,
+                        extra_labels={
+                            "bus": next(iter(signal.display_names)).split(".")[
+                                0
+                            ]
+                        },
+                    )
+                    for signal in decoded.iter_channels(raw=True)
+                ]
+                samples = sum(future.result() for future in futures)
     if not samples:
         raise RuntimeError(f"No decoded samples in {path.name} for {job}")
     return samples

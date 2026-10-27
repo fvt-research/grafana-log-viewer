@@ -4,6 +4,7 @@ import sqlite3
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from threading import Barrier, Lock
 from unittest.mock import Mock, patch
 
 from asammdf import Signal
@@ -55,6 +56,47 @@ class ClaytonTest(unittest.TestCase):
             self.assertEqual(
                 send.call_args.kwargs["extra_labels"], {"bus": "CAN1"}
             )
+            send.side_effect = RuntimeError("HTTP failure")
+            with self.assertRaisesRegex(RuntimeError, "HTTP failure"):
+                decode_file(Path("test.MF4"), "LB101", "http://vm", Path("dbc"))
+
+    def test_decoded_signal_batches_use_ten_workers(self):
+        state = Signal(
+            samples=[0, 1],
+            timestamps=[0, 1],
+            name="State",
+            display_names={"CAN1.BMS.State": "", "BMS.State": ""},
+        )
+        barrier = Barrier(10, timeout=5)
+        lock = Lock()
+        active = peak = 0
+
+        def send(*args, **kwargs):
+            nonlocal active, peak
+            with lock:
+                active += 1
+                peak = max(peak, active)
+            barrier.wait()
+            with lock:
+                active -= 1
+            return 2
+
+        with patch("decoder.Clayton.send_clayton.MDF") as mdf, patch(
+            "decoder.Clayton.send_clayton.send_signal_using_json_lines",
+            side_effect=send,
+        ):
+            raw = mdf.return_value.__enter__.return_value
+            decoded = (
+                raw.extract_bus_logging.return_value.__enter__.return_value
+            )
+            decoded.iter_channels.return_value = [state] * 20
+            self.assertEqual(
+                decode_file(
+                    Path("test.MF4"), "LB101", "http://vm", Path("dbc")
+                ),
+                40,
+            )
+        self.assertEqual(peak, 10)
 
     def test_checkpoint_resume_replacement_and_late_upload(self):
         obj = {

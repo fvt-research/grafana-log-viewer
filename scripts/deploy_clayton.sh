@@ -73,4 +73,6 @@ systemctl --user is-active clayton-ingest.timer
 REMOTE
 
 echo "Deployed Clayton $RELEASE_ID to $REMOTE_HOST:$REMOTE_RELEASE"
-REMOTE_HOST="$REMOTE_HOST" "$REPO_ROOT/scripts/deploy_clayton_dashboard.sh"
+if [[ "${SKIP_DASHBOARD_DEPLOY:-0}" != 1 ]]; then
+  REMOTE_HOST="$REMOTE_HOST" "$REPO_ROOT/scripts/deploy_clayton_dashboard.sh"
+fi

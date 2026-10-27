@@ -68,6 +68,9 @@ Clayton reads **all available history** from `fvt-telematics`, using the bundled
 device/DBC configuration and existing AWS credentials. No Lambda/Influx changes.
 Each run processes at most 10 files per device, one file at a time; subsequent
 runs resume per-object SQLite checkpoints. No generic time-window cursor is used.
+Like D65/B3SR streaming, each decoded file uploads signals using 10 workers
+with at most 10,000 samples per JSON line. Failed uploads prevent the file's
+checkpoint from advancing.
 The timer runs every five minutes and never overlaps its own active service.
 
 The selective deploy leaves D65/B3SR units, `ingest/current`, and
@@ -105,6 +108,9 @@ From the local checkout:
 RELEASE_ID="$(date -u +%Y%m%dT%H%M%SZ)-$(git rev-parse --short HEAD)" \
 CLAYTON_BIND_IP=100.87.35.92 ./scripts/deploy_clayton.sh
 ```
+
+For ingestion-only updates, set `SKIP_DASHBOARD_DEPLOY=1` to preserve dashboard
+edits saved in Grafana instead of redeploying the repository dashboard JSON.
 
 Default binding is loopback only. Setting the tailnet IPv4 publishes **both**
 `127.0.0.1` and that tailnet address: VM `8433`, MCP `9433`. No public-interface
