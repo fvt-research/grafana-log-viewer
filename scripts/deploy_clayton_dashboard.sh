@@ -33,7 +33,13 @@ def request(path, data=None):
 request("/api/admin/provisioning/datasources/reload", b"")
 request("/api/admin/provisioning/dashboards/reload", b"")
 dashboard = request("/api/dashboards/uid/clayton-batteries")
-if not dashboard["meta"].get("provisioned"):
+resource = request(
+    "/apis/dashboard.grafana.app/v1beta1/namespaces/default/dashboards/clayton-batteries"
+)
+annotations = resource["metadata"].get("annotations", {})
+if annotations.get("grafana.app/managerId") != "Clayton":
     raise SystemExit("Clayton dashboard was not loaded from provisioning")
+if annotations.get("grafana.app/managerAllowsEdits") != "true":
+    raise SystemExit("Clayton dashboard provisioning does not permit UI saves")
 print("Provisioned dashboard:", dashboard["meta"]["url"])
 PY

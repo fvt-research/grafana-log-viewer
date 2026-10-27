@@ -274,7 +274,8 @@ def migrate(source: dict, libraries: dict[str, dict]) -> dict:
         "Migrated from cloud locomotive battery diagnostics. "
         "All recorded signals use VictoriaMetrics. Backfill is ongoing; "
         "offline batteries require their recording dates in the time picker. "
-        "PLC status was rebuilt; cloud alert rules were unavailable."
+        "PLC status was rebuilt; cloud alert rules were unavailable. "
+        "UI edits can be saved; provisioning source updates can overwrite them."
     )
     dashboard.setdefault("tags", []).append("Clayton")
     dashboard["templating"] = {
