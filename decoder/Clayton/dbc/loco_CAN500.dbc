@@ -1,0 +1,1928 @@
+VERSION "v0.0.5"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Charger_4 Charger_3 Charger_2 Charger_1 Screen PDU_expander CVC BMS Telematics CAN_simulator
+VAL_TABLE_ Vt_charger_multiplexor_0 64004 "Base address setting" 64003 "Battery under/over volt limit" 64002 "LED setting" 64001 "GPIO setting" 64000 "Charger setpoint" ;
+VAL_TABLE_ Vt_critical_fault 9 "Loss of contactor control" 8 "Critical overcurrent" 7 "Critical high cell voltage" 6 "Critical BMS over temperature" 5 "Critical cell over temperature" 4 "Critical cell delta" 3 "Critical low cell voltage" 2 "Too many packs dropped" 1 "HVIL open" 0 "No critical faults" ;
+VAL_TABLE_ Vt_level_sensor_status 3 "sensor malfunction" 2 "critical" 1 "low" 0 "ok" ;
+VAL_TABLE_ Vt_contactor_SM 10 "Charge subpacks" 9 "Changeover precharge all" 8 "Changeover precharge pre" 7 "Changeover precharge neg" 6 "Bring in subpack" 5 "Precharge fail" 4 "Precharge success" 3 "Precharge" 2 "Skip select subpack" 1 "Select pre charge subpack" 0 "First pass" ;
+VAL_TABLE_ Vt_loco_SM 14 "Precharge" 13 "Shutdown" 12 "Emergency stop" 11 "Critical failure HV on" 10 "Critical failure HV off" 9 "Dead battery" 8 "Tow mode" 7 "Ready to drive" 6 "Diagnostic mode" 5 "Brake test mode" 4 "Post charge idle" 3 "Charging" 2 "Startup" 1 "Master closed no HV" 0 "Zero energy" ;
+VAL_TABLE_ VTIdx 6 "BMS6" 5 "BMS5" 3 "BMS3" 4 "BMS4" 2 "BMS2" 1 "BMS1" ;
+
+
+BO_ 2565853440 CHG4_setpoint: 8 CVC
+ SG_ CHG4_dc_base_address m1274 : 16|8@1+ (1,0) [128|247] ""  Charger_4
+ SG_ CHG4_batt_UV_limit m1018 : 32|16@1+ (0.05,0) [200|840] "V"  Charger_4
+ SG_ CHG4_batt_OV_limit m1018 : 16|16@1+ (0.05,0) [450|840] "V"  Charger_4
+ SG_ CHG4_LED_setting m762 : 16|8@1+ (1,0) [0|100] "%"  Charger_4
+ SG_ CHG4_gpo_en m506 : 17|1@1- (1,0) [0|1] ""  Charger_4
+ SG_ CHG4_wake_up_ECU m506 : 16|1@1+ (1,0) [0|1] ""  Charger_4
+ SG_ CHG4_EN m250 : 48|8@1+ (1,0) [0|1] ""  Charger_4
+ SG_ CHG4_BAT_VOLT_LIMIT m250 : 32|16@1+ (0.05,0) [250|800] "V"  Charger_4
+ SG_ CHG4_IOUT_SET m250 : 16|16@1+ (0.05,0) [0.5|37.5] "A"  Charger_4
+ SG_ CHG4_multiplexor M : 0|16@1+ (1,0) [0|65535] ""  Charger_4
+
+BO_ 2565853696 CHG3_setpoint: 8 CVC
+ SG_ CHG3_dc_base_address m1274 : 16|8@1+ (1,0) [128|247] ""  Charger_3
+ SG_ CHG3_batt_UV_limit m1018 : 32|16@1+ (0.05,0) [200|840] "V"  Charger_3
+ SG_ CHG3_batt_OV_limit m1018 : 16|16@1+ (0.05,0) [450|840] "V"  Charger_3
+ SG_ CHG3_LED_setting m762 : 16|8@1+ (1,0) [0|100] "%"  Charger_3
+ SG_ CHG3_gpo_en m506 : 17|1@1- (1,0) [0|1] ""  Charger_3
+ SG_ CHG3_wake_up_ECU m506 : 16|1@1+ (1,0) [0|1] ""  Charger_3
+ SG_ CHG3_EN m250 : 48|8@1+ (1,0) [0|1] ""  Charger_3
+ SG_ CHG3_BAT_VOLT_LIMIT m250 : 32|16@1+ (0.05,0) [250|800] "V"  Charger_3
+ SG_ CHG3_IOUT_SET m250 : 16|16@1+ (0.05,0) [0.5|37.5] "A"  Charger_3
+ SG_ CHG3_multiplexor M : 0|16@1+ (1,0) [0|65535] ""  Charger_3
+
+BO_ 2565853952 CHG2_setpoint: 8 CVC
+ SG_ CHG2_dc_base_address m1274 : 16|8@1+ (1,0) [128|247] ""  Charger_2
+ SG_ CHG2_batt_UV_limit m1018 : 32|16@1+ (0.05,0) [200|840] "V"  Charger_2
+ SG_ CHG2_batt_OV_limit m1018 : 16|16@1+ (0.05,0) [450|840] "V"  Charger_2
+ SG_ CHG2_LED_setting m762 : 16|8@1+ (1,0) [0|100] "%"  Charger_2
+ SG_ CHG2_gpo_en m506 : 17|1@1- (1,0) [0|1] ""  Charger_2
+ SG_ CHG2_wake_up_ECU m506 : 16|1@1+ (1,0) [0|1] ""  Charger_2
+ SG_ CHG2_EN m250 : 48|8@1+ (1,0) [0|1] ""  Charger_2
+ SG_ CHG2_BAT_VOLT_LIMIT m250 : 32|16@1+ (0.05,0) [250|800] "V"  Charger_2
+ SG_ CHG2_IOUT_SET m250 : 16|16@1+ (0.05,0) [0.5|37.5] "A"  Charger_2
+ SG_ CHG2_multiplexor M : 0|16@1+ (1,0) [0|65535] ""  Charger_2
+
+BO_ 2565854208 CHG1_setpoint: 8 CVC
+ SG_ CHG1_dc_base_address m1274 : 16|8@1+ (1,0) [128|247] ""  Charger_1
+ SG_ CHG1_batt_UV_limit m1018 : 32|16@1+ (0.05,0) [200|840] "V"  Charger_1
+ SG_ CHG1_batt_OV_limit m1018 : 16|16@1+ (0.05,0) [450|840] "V"  Charger_1
+ SG_ CHG1_LED_setting m762 : 16|8@1+ (1,0) [0|100] "%"  Charger_1
+ SG_ CHG1_gpo_en m506 : 17|1@1- (1,0) [0|1] ""  Charger_1
+ SG_ CHG1_wake_up_ECU m506 : 16|1@1+ (1,0) [0|1] ""  Charger_1
+ SG_ CHG1_EN m250 : 48|8@1+ (1,0) [0|1] ""  Charger_1
+ SG_ CHG1_BAT_VOLT_LIMIT m250 : 32|16@1+ (0.05,0) [250|800] "V"  Charger_1
+ SG_ CHG1_IOUT_SET m250 : 16|16@1+ (0.05,0) [0.5|37.5] "A"  Charger_1
+ SG_ CHG1_multiplexor M : 0|16@1+ (1,0) [0|65535] ""  Charger_1
+
+BO_ 2566903249 CHG4_MEASURED: 8 Charger_4
+ SG_ CHG4_pilot_duty : 48|8@1+ (1,0) [0|255] "%"  CVC
+ SG_ CHG4_ADC_M : 0|16@1+ (0.05,0) [0|3276.75] "V"  CVC
+ SG_ CHG4_I_buck_available : 32|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+ SG_ CHG4_I_bat_available : 16|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+
+BO_ 2566903250 CHG3_MEASURED: 8 Charger_3
+ SG_ CHG3_pilot_duty : 48|8@1+ (1,0) [0|255] "%"  CVC
+ SG_ CHG3_ADC_M : 0|16@1+ (0.05,0) [0|3276.75] "V"  CVC
+ SG_ CHG3_I_buck_available : 32|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+ SG_ CHG3_I_bat_available : 16|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+
+BO_ 2566903251 CHG2_MEASURED: 8 Charger_2
+ SG_ CHG2_pilot_duty : 48|8@1+ (1,0) [0|255] "%"  CVC
+ SG_ CHG2_ADC_M : 0|16@1+ (0.05,0) [0|3276.75] "V"  CVC
+ SG_ CHG2_I_buck_available : 32|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+ SG_ CHG2_I_bat_available : 16|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+
+BO_ 2566903252 CHG1_MEASURED: 8 Charger_1
+ SG_ CHG1_pilot_duty : 48|8@1+ (1,0) [0|255] "%"  CVC
+ SG_ CHG1_ADC_M : 0|16@1+ (0.05,0) [0|3276.75] "V"  CVC
+ SG_ CHG1_I_buck_available : 32|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+ SG_ CHG1_I_bat_available : 16|16@1+ (0.05,0) [0|3276.75] "A"  CVC
+
+BO_ 2566902993 CHG4_STATUS: 8 Charger_4
+ SG_ CHG4_status_buck_uv : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_prox_pilot_en : 29|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_prox_ok : 31|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_pilot_ok : 30|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_hvil_loop_dc : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_gpi_signal : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_failure_of_wakeup_sw : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_failure_gpo_power_sw : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_unused_0 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ CHG4_status_unit_enabled : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_thermistor_fault : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_remote_shutdown : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_prop_2 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ CHG4_status_prop_1 : 20|3@1+ (1,0) [0|7] ""  CVC
+ SG_ CHG4_status_output_oc : 5|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_lv_batt_in_range : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_keysw_v_in_range : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_input_v_ok : 0|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_input_uint_ot : 6|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_input_freq_ok : 1|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_init_ok : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_i2c_fault : 7|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_hv_batt_v_in_range : 4|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_hv_batt_uv : 2|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_hv_batt_ov : 3|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_fault_out_off : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_fault_latch : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_eeprom_memory_fault : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_dsp_uploading_sw : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_dsp_in_bootloader : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_dsp_fail_output_off : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG4_status_charger_state : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ CHG4_status_canbus_fault : 8|1@1+ (1,0) [0|1] ""  CVC
+
+BO_ 2566902994 CHG3_STATUS: 8 Charger_3
+ SG_ CHG3_status_buck_uv : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_prox_pilot_en : 29|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_prox_ok : 31|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_pilot_ok : 30|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_hvil_loop_dc : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_gpi_signal : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_failure_of_wakeup_sw : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_failure_gpo_power_sw : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_unused_0 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ CHG3_status_unit_enabled : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_thermistor_fault : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_remote_shutdown : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_prop_2 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ CHG3_status_prop_1 : 20|3@1+ (1,0) [0|7] ""  CVC
+ SG_ CHG3_status_output_oc : 5|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_lv_batt_in_range : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_keysw_v_in_range : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_input_v_ok : 0|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_input_uint_ot : 6|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_input_freq_ok : 1|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_init_ok : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_i2c_fault : 7|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_hv_batt_v_in_range : 4|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_hv_batt_uv : 2|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_hv_batt_ov : 3|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_fault_out_off : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_fault_latch : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_eeprom_memory_fault : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_dsp_uploading_sw : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_dsp_in_bootloader : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_dsp_fail_output_off : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG3_status_charger_state : 56|8@1+ (1,0) [0|12] ""  CVC
+ SG_ CHG3_status_canbus_fault : 8|1@1+ (1,0) [0|1] ""  CVC
+
+BO_ 2566902995 CHG2_STATUS: 8 Charger_2
+ SG_ CHG2_status_buck_uv : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_prox_pilot_en : 29|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_prox_ok : 31|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_pilot_ok : 30|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_hvil_loop_dc : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_gpi_signal : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_failure_of_wakeup_sw : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_failure_gpo_power_sw : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_unused_0 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ CHG2_status_unit_enabled : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_thermistor_fault : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_remote_shutdown : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_prop_2 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ CHG2_status_prop_1 : 20|3@1+ (1,0) [0|7] ""  CVC
+ SG_ CHG2_status_output_oc : 5|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_lv_batt_in_range : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_keysw_v_in_range : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_input_v_ok : 0|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_input_uint_ot : 6|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_input_freq_ok : 1|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_init_ok : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_i2c_fault : 7|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_hv_batt_v_in_range : 4|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_hv_batt_uv : 2|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_hv_batt_ov : 3|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_fault_out_off : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_fault_latch : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_eeprom_memory_fault : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_dsp_uploading_sw : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_dsp_in_bootloader : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_dsp_fail_output_off : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG2_status_charger_state : 56|8@1+ (1,0) [0|12] ""  CVC
+ SG_ CHG2_status_canbus_fault : 8|1@1+ (1,0) [0|1] ""  CVC
+
+BO_ 2566902996 CHG1_STATUS: 8 Charger_1
+ SG_ CHG1_status_buck_uv : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_prox_pilot_en : 29|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_prox_ok : 31|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_pilot_ok : 30|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_hvil_loop_dc : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_gpi_signal : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_failure_of_wakeup_sw : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_failure_gpo_power_sw : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_unused_0 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ CHG1_status_unit_enabled : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_thermistor_fault : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_remote_shutdown : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_prop_2 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ CHG1_status_prop_1 : 20|3@1+ (1,0) [0|7] ""  CVC
+ SG_ CHG1_status_output_oc : 5|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_lv_batt_in_range : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_keysw_v_in_range : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_input_v_ok : 0|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_input_uint_ot : 6|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_input_freq_ok : 1|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_init_ok : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_i2c_fault : 7|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_hv_batt_v_in_range : 4|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_hv_batt_uv : 2|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_hv_batt_ov : 3|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_fault_out_off : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_fault_latch : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_eeprom_memory_fault : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_dsp_uploading_sw : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_dsp_in_bootloader : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_dsp_fail_output_off : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ CHG1_status_charger_state : 56|8@1+ (1,0) [0|12] ""  CVC
+ SG_ CHG1_status_canbus_fault : 8|1@1+ (1,0) [0|1] ""  CVC
+
+BO_ 2566903761 CHG4_SECONDARY: 8 Charger_4
+ SG_ CHG4_VOUT_VDC : 0|16@1+ (0.05,0) [0|400] "V"  CVC
+ SG_ CHG4_LV_BATT : 40|16@1+ (0.05,0) [0|32] "V"  CVC
+ SG_ CHG4_IOUT : 16|16@1- (0.05,0) [-37.5|37.5] "A"  CVC
+ SG_ CHG4_CHASSIS_TEMP : 32|8@1- (1,-40) [-88|167] "C"  CVC
+ SG_ CHG4_AMB_TEMP : 56|8@1- (1,-40) [-88|167] "C"  CVC
+
+BO_ 2566903762 CHG3_SECONDARY: 8 Charger_3
+ SG_ CHG3_VOUT_VDC : 0|16@1+ (0.05,0) [0|400] "V"  CVC
+ SG_ CHG3_LV_BATT : 40|16@1+ (0.05,0) [0|32] "V"  CVC
+ SG_ CHG3_IOUT : 16|16@1- (0.05,0) [-37.5|37.5] "A"  CVC
+ SG_ CHG3_CHASSIS_TEMP : 32|8@1- (1,-40) [-88|167] "C"  CVC
+ SG_ CHG3_AMB_TEMP : 56|8@1- (1,-40) [-88|167] "C"  CVC
+
+BO_ 2566903763 CHG2_SECONDARY: 8 Charger_2
+ SG_ CHG2_VOUT_VDC : 0|16@1+ (0.05,0) [0|400] "V"  CVC
+ SG_ CHG2_LV_BATT : 40|16@1+ (0.05,0) [0|32] "V"  CVC
+ SG_ CHG2_IOUT : 16|16@1- (0.05,0) [-37.5|37.5] "A"  CVC
+ SG_ CHG2_CHASSIS_TEMP : 32|8@1- (1,-40) [-88|167] "C"  CVC
+ SG_ CHG2_AMB_TEMP : 56|8@1- (1,-40) [-88|167] "C"  CVC
+
+BO_ 2566903764 CHG1_SECONDARY: 8 Charger_1
+ SG_ CHG1_VOUT_VDC : 0|16@1+ (0.05,0) [0|400] "V"  CVC
+ SG_ CHG1_LV_BATT : 40|16@1+ (0.05,0) [0|32] "V"  CVC
+ SG_ CHG1_IOUT : 16|16@1- (0.05,0) [-37.5|37.5] "A"  CVC
+ SG_ CHG1_CHASSIS_TEMP : 32|8@1- (1,-40) [-88|167] "C"  CVC
+ SG_ CHG1_AMB_TEMP : 56|8@1- (1,-40) [-88|167] "C"  CVC
+
+BO_ 2566903505 CHG4_PRIMARY: 8 Charger_4
+ SG_ CHG4_V3_1_RMS_VAC : 32|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG4_V2_3_RMS_VAC : 16|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG4_V1_2_RMS_VAC : 0|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG4_INPUT_HZ : 48|16@1+ (0.05,0) [0|150] "Hz"  CVC
+
+BO_ 2566903506 CHG3_PRIMARY: 8 Charger_3
+ SG_ CHG3_V3_1_RMS_VAC : 32|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG3_V2_3_RMS_VAC : 16|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG3_V1_2_RMS_VAC : 0|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG3_INPUT_HZ : 48|16@1+ (0.05,0) [0|150] "Hz"  CVC
+
+BO_ 2566903507 CHG2_PRIMARY: 8 Charger_2
+ SG_ CHG2_V3_1_RMS_VAC : 32|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG2_V2_3_RMS_VAC : 16|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG2_V1_2_RMS_VAC : 0|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG2_INPUT_HZ : 48|16@1+ (0.05,0) [0|150] "Hz"  CVC
+
+BO_ 2566903508 CHG1_PRIMARY: 8 Charger_1
+ SG_ CHG1_V3_1_RMS_VAC : 32|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG1_V2_3_RMS_VAC : 16|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG1_V1_2_RMS_VAC : 0|16@1+ (0.05,0) [0|800] "V"  CVC
+ SG_ CHG1_INPUT_HZ : 48|16@1+ (0.05,0) [0|150] "Hz"  CVC
+
+BO_ 2600513537 Errors_1: 8 CVC
+ SG_ errors_1_unused_2 : 14|2@1+ (1,0) [0|3] ""  Screen,Telematics
+ SG_ errors_1_aux_batt_less_than_11v : 24|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_trac_inverter_fault : 27|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_master_module_fault : 31|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_cvc_sys_error : 16|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_can3_fault : 30|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_can2_fault : 29|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_can1_fault : 28|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_batt_critical : 26|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_aux_batt_less_than_8v : 25|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_throttle_pedal_fault : 21|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_precharge_fault : 17|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_loss_of_comm : 20|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_dcdc_fault : 18|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_contactor_welded : 19|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_batt_hv_iso_fault : 22|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_oc_error_B : 13|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_oc_error_A : 11|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_current_imbalance : 9|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_coolant_sensor_fault : 23|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_bms_overtemp : 12|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_batt_hc_delta_error : 8|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_ambient_temp_too_low : 10|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ errors_1_unused_3 : 32|32@1+ (1,0) [0|4294967295] ""  Screen,Telematics
+ SG_ errors_1_unused_1 : 0|8@1+ (1,0) [0|255] ""  Screen,Telematics
+
+BO_ 2600514018 Warnings_2: 8 CVC
+ SG_ warning_2_unused_warning_3 : 0|16@1+ (1,0) [0|262143] ""  Screen,Telematics
+ SG_ warning_2_unused_warning_2 : 22|2@1+ (1,0) [0|3] ""  Screen,Telematics
+ SG_ warning_2_charger_4_offline : 25|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_charger_3_offline : 24|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_6_pos_failed : 31|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_5_pos_failed : 30|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_4_pos_failed : 29|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_3_pos_failed : 28|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_2_pos_failed : 27|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_1_pos_failed : 26|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_1_neg_failed : 16|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_unused_warning_1 : 32|32@1+ (1,0) [0|4294967295] ""  Screen,Telematics
+ SG_ warning_2_contactor_6_neg_failed : 21|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_5_neg_failed : 20|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_4_neg_failed : 19|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_3_neg_failed : 18|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_2_contactor_2_neg_failed : 17|1@1+ (1,0) [0|1] ""  Screen,Telematics
+
+BO_ 2600514017 Warnings_1: 8 CVC
+ SG_ warning_1_pos_contactor_6_welded : 61|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_pos_contactor_5_welded : 60|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_pos_contactor_4_welded : 59|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_pos_contactor_3_welded : 58|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_pos_contactor_2_welded : 57|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_pos_contactor_1_welded : 56|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_neg_contactor_6_welded : 51|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_neg_contactor_5_welded : 50|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_neg_contactor_4_welded : 49|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_neg_contactor_3_welded : 48|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_neg_contactor_2_welded : 63|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_neg_contactor_1_welded : 62|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_exp_contactor_2_welded : 53|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_exp_contactor_1_welded : 52|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_comm_bms_6 : 43|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_comm_bms_5 : 42|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_comm_bms_4 : 41|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_comm_bms_3 : 40|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_comm_bms_2 : 55|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_comm_bms_1 : 54|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_pdm : 33|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_dcdc : 32|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_charger_4 : 47|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_charger_3 : 46|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_charger_2 : 45|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_charger_1 : 44|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_loco_plc_prog : 37|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_screen : 35|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_loco_plc : 36|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_com_loco_exp : 34|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_2_offline : 39|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_1_offline : 38|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_batt_temp_ol : 24|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_batt_hc_delta : 25|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_weak_cell_fault : 31|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_tran_speed_sens_fail : 30|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_trac_motor_temp_ol : 26|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_trac_inverter_temp_ol : 27|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_shifter_in_high_gear : 29|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_low_batt_ltd_pwr : 28|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_hvil : 18|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_estp_engaged : 17|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_cooling_pump_dry : 16|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_coolant_level_low_crit : 23|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_chg_des_not_plugged_in : 19|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_errors : 21|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_button_stuck : 22|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_bms_errors : 20|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_overcurrent_warning : 0|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_lcv_warning : 15|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_hcv_warning : 8|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_current_imbalance : 9|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_over_temp : 12|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_input_too_low : 11|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_input_too_high : 10|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_charger_hvdc_uv : 13|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_ambient_temp_too_low : 14|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_unused_31 : 7|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_unused_30 : 6|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_remote_shutoff : 2|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_output_prechg_failed : 5|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_can_failed : 4|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_bms_overtemp : 1|1@1+ (1,0) [0|1] ""  Screen,Telematics
+ SG_ warning_1_aux_batt_low : 3|1@1+ (1,0) [0|1] ""  Screen,Telematics
+
+BO_ 2149515776 PDU_control: 8 CVC
+ SG_ expander_control_unused_3 : 32|32@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ expander_control_unused_2 : 8|24@1+ (1,0) [0|4294967295] ""  PDU_expander
+ SG_ expander_control_unused_1 : 3|5@1+ (1,0) [0|536870911] ""  PDU_expander
+ SG_ expander_control_precharge_cmd : 2|1@1+ (1,0) [0|1] ""  PDU_expander
+ SG_ expander_control_pos2_cmd : 1|1@1+ (1,0) [0|1] ""  PDU_expander
+ SG_ expander_control_pos1_cmd : 0|1@1+ (1,0) [0|1] ""  PDU_expander
+
+BO_ 2149515520 PDU_feedback: 8 PDU_expander
+ SG_ expander_fb_unused_2 : 32|32@1+ (1,0) [0|4294967295] ""  CVC
+ SG_ expander_fb_unused_1 : 11|5@1+ (1,0) [0|31] ""  CVC
+ SG_ expander_fb_unused_0 : 3|5@1+ (1,0) [0|31] ""  CVC
+ SG_ expander_fb_relay_current : 23|16@0+ (1,0) [0|3000] "mA"  CVC
+ SG_ expander_fb_prechrg_cmd : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ expander_fb_prechg_ok : 2|1@1+ (1,0) [0|1] ""  CVC
+ SG_ expander_fb_pos_2_fb : 1|1@1+ (1,0) [0|1] ""  CVC
+ SG_ expander_fb_pos_2_cmd : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ expander_fb_pos_1_fb : 0|1@1+ (1,0) [0|1] ""  CVC
+ SG_ expander_fb_pos_1_cmd : 8|1@1+ (1,0) [0|1] ""  CVC
+
+BO_ 2147545100 Debug_C: 8 CVC
+ SG_ debug_C_plc_msg31_count m31 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg30_count m30 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg29_count m29 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg28_count m28 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg27_count m27 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg26_count m26 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg25_count m25 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg24_count m24 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg23_count m23 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg22_count m22 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg21_count m21 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg20_count m20 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg19_count m19 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg18_count m18 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg17_count m17 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg16_count m16 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg15_count m15 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg14_count m14 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg13_count m13 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg12_count m12 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg11_count m11 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg10_count m10 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg9_count m9 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg8_count m8 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg7_count m7 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg6_count m6 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg5_count m5 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg4_count m4 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg3_count m3 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg2_count m2 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg1_count m1 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg0_count m0 : 48|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_C_plc_msg_mult M : 0|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545099 Debug_B: 8 CVC
+ SG_ debug_B_voltage_sensor : 0|16@1+ (0.01,0) [0|655.35] "V"  Telematics
+
+BO_ 2147545098 Debug_A: 8 CVC
+ SG_ debug_A_heartbeat_timer : 54|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ debug_A_unused : 55|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_A_remote_req_off : 52|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_A_prechrg_relay_cmd : 51|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_A_output_pos_2_cmd : 50|1@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_output_pos_1_cmd : 49|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_A_dcdc_output_status : 53|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_A_can_ok : 48|1@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_voltage_ok : 32|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_precharge_failed : 40|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_override_on : 8|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_num_of_tries : 56|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_locomotive_sw : 24|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_integrity : 16|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_A_exp_state : 0|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545097 Debug_9: 8 CVC
+ SG_ debug_9_can3_missed_counter : 32|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_9_can2_missed_counter : 16|16@1+ (1,0) [0|65535] ""  Telematics
+ SG_ debug_9_can1_missed_counter : 0|16@1+ (1,0) [0|65535] ""  Telematics
+
+BO_ 2147545096 Debug_8: 8 CVC
+ SG_ debug_8_can3_status : 16|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_8_can2_status : 8|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_8_can1_status : 0|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545095 Debug_7: 8 CVC
+ SG_ debug_7_sp6_neg_cmd : 29|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp5_neg_cmd : 28|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp4_neg_cmd : 27|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp3_neg_cmd : 26|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp2_neg_cmd : 25|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp1_neg_cmd : 24|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp6_pos_cmd : 21|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp5_pos_cmd : 20|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp4_pos_cmd : 19|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp3_pos_cmd : 18|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp2_pos_cmd : 17|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_sp1_pos_cmd : 16|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_unused_1 : 9|7@1+ (1,0) [0|127] ""  Telematics
+ SG_ debug_7_crit_cont_failure : 8|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_overcurrent : 7|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_hcv : 6|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_bms_overtemp : 5|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_cell_overtemp : 4|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_cell_delta : 3|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_lcv : 2|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_too_many_dropped : 1|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_crit_hvil : 0|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_neg_welded : 48|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_7_unused : 58|6@1+ (1,0) [0|63] ""  Telematics
+ SG_ debug_7_pump_on : 57|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_pos_welded : 40|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_7_fan_on : 56|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_7_charger_state : 32|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545094 Debug_6: 8 CVC
+ SG_ debug_6_max_charge_4 : 48|16@1- (0.05,0) [0|3276.75] "A"  Telematics
+ SG_ debug_6_max_charge_3 : 32|16@1- (0.05,0) [0|3276.75] "A"  Telematics
+ SG_ debug_6_max_charge_2 : 16|16@1- (0.05,0) [0|3276.75] "A"  Telematics
+ SG_ debug_6_max_charge_1 : 0|16@1- (0.05,0) [0|3276.75] "A"  Telematics
+
+BO_ 2147545093 Debug_5: 8 CVC
+ SG_ debug_5_unused : 48|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_5_cell_delta_6 : 40|8@1+ (1,0) [0|255] "mV"  Telematics
+ SG_ debug_5_cell_delta_5 : 32|8@1+ (1,0) [0|255] "mV"  Telematics
+ SG_ debug_5_cell_delta_4 : 24|8@1+ (1,0) [0|255] "mV"  Telematics
+ SG_ debug_5_cell_delta_3 : 16|8@1+ (1,0) [0|255] "mV"  Telematics
+ SG_ debug_5_cell_delta_2 : 8|8@1+ (1,0) [0|255] "mV"  Telematics
+ SG_ debug_5_cell_delta_1 : 0|8@1+ (1,0) [0|255] "mV"  Telematics
+ SG_ debug_5_balance_cells : 56|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545092 Debug_4: 8 CVC
+ SG_ debug_4_total_capacity : 16|16@1+ (1,0) [0|255] "A"  Telematics
+ SG_ debug_4_lcv : 48|16@1+ (0.1,0) [0|255] "mV"  Telematics
+ SG_ debug_4_hcv : 32|16@1+ (0.1,0) [0|255] "mV"  Telematics
+ SG_ debug_4_charger_failure_4 : 12|4@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_4_charger_failure_3 : 8|4@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_4_charger_failure_2 : 4|4@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_4_charger_failure_1 : 0|4@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545091 Debug_3: 8 CVC
+ SG_ debug_3_sp6_neg_fb : 53|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp5_neg_fb : 52|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp4_neg_fb : 51|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp3_neg_fb : 50|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp2_neg_fb : 49|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp1_neg_fb : 48|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_loco_output2_fb : 57|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp6_pos_fb : 45|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp5_pos_fb : 44|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp4_pos_fb : 43|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp3_pos_fb : 42|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp2_pos_fb : 41|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_sp1_pos_fb : 40|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_cont_under_load_POS2 : 31|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_cont_under_load_POS1 : 30|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_reservoir_temp : 32|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_3_loco_output1_fb : 56|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_limp_mode_en : 0|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_3_current_imbalance_w : 16|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_3_current_imbalance_e : 8|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_3_contactor_under_load_sp : 24|6@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545090 Debug_2: 8 CVC
+ SG_ debug_2_sp6_ok : 53|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_sp5_ok : 52|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_sp4_ok : 51|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_sp3_ok : 50|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_sp2_ok : 49|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_sp1_ok : 48|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_subpack_failed : 0|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_pdm_config_ok : 40|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_lv_battery_ok : 32|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_low_power_mode : 24|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_2_critical_fault : 56|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_2_coolant_level_status : 8|8@1+ (1,0) [0|255] ""  Telematics
+ SG_ debug_2_contactor_state_machine : 16|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147545089 Debug_1: 8 CVC
+ SG_ debug_1_enable_charger4 : 59|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_enable_charger3 : 58|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_enable_charger2 : 57|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_enable_charger1 : 56|1@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_precharge_success : 48|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_precharge_failure : 40|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_pre_contactor : 32|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_pos_contactor : 16|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_neg_contactor : 24|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_hv_enabled : 8|8@1+ (1,0) [0|1] ""  Telematics
+ SG_ debug_1_current_state : 0|8@1+ (1,0) [0|255] ""  Telematics
+
+BO_ 2147484178 Clayton_3: 8 CVC
+ SG_ clayton_3_batt_avg_temp : 16|16@1- (1,0) [-32768|32767] "C"  Screen
+ SG_ clayton_3_bms_temp : 48|16@1- (1,0) [-32768|32767] "C"  Screen
+ SG_ clayton_3_batt_low_temp : 32|16@1- (1,0) [-32768|32767] "C"  Screen
+ SG_ clayton_3_batt_high_temp : 0|16@1- (1,0) [-32768|32767] "C"  Screen
+
+BO_ 2147484177 Clayton_2: 8 CVC
+ SG_ clayton_2_unused_2 : 45|3@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_charger_coolant_level : 48|16@1+ (1,0) [0|65535] "%"  Screen
+ SG_ clayton_2_unused_1 : 39|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_limp_mode : 42|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_general_warning : 44|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_current_imbal_warning : 43|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_current_imbal_error : 38|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_coolant_low : 40|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_bms_warning : 41|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_pump_failure : 32|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_pump_current_warning : 30|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_fan_failure : 33|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_fan_current_warning : 31|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_critical_fault : 37|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_coolant_sensor_failure : 35|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_cell_delta_problem : 28|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_bms_temp_warning : 29|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_bms_error : 36|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_battery_under_temp : 34|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_warm_batt_temp : 25|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_uvp : 18|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_ucp : 20|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_subpacks_connected : 8|8@1+ (1,0) [0|255] ""  Screen
+ SG_ clayton_2_subpack_sync : 24|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_ovp : 17|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_ocp : 19|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_hvil_loop_broken : 16|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_hv_iso_fault : 21|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_estop_pushed : 27|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_contactor_failure : 22|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_battery_status : 0|8@1+ (1,0) [0|255] ""  Screen
+ SG_ clayton_2_battery_overtemp : 23|1@1+ (1,0) [0|1] ""  Screen
+ SG_ clayton_2_batt_too_cold : 26|1@1+ (1,0) [0|1] ""  Screen
+
+BO_ 2147484176 Clayton_1: 8 CVC
+ SG_ clayton_1_battery_soc : 0|16@1+ (0.1,0) [0|6553.5] "%"  Screen
+ SG_ clayton_1_battery_pack_v : 16|16@1+ (0.1,0) [0|6553.5] "V"  Screen
+ SG_ clayton_1_battery_pack_i : 32|16@1- (0.1,0) [-3276.8|3276.7] "A"  Screen
+ SG_ clayton_1_battery_pack_cycles : 48|16@1+ (1,0) [0|65535] ""  Screen
+
+BO_ 2149273612 BMS_MSGC: 3 BMS
+ SG_ BMS6_fast_i m6 : 8|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS5_fast_i m5 : 8|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS4_fast_i m4 : 8|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS3_fast_i m3 : 8|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS2_fast_i m2 : 8|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS1_fast_i m1 : 8|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS_MSGC_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273611 BMS_MSGB: 8 BMS
+ SG_ BMS6_unused_7 m6 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_high_opencell_id m6 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_low_intres_id m6 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_high_intres_id m6 : 32|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_low_cell_v_id m6 : 24|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_high_cell_v_id m6 : 16|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_low_thermistor_id m6 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_unused_7 m5 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_high_opencell_id m5 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_low_intres_id m5 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_high_intres_id m5 : 32|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_low_cell_v_id m5 : 24|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_high_cell_v_id m5 : 16|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_low_thermistor_id m5 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_unused_7 m4 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_high_opencell_id m4 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_low_intres_id m4 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_high_intres_id m4 : 32|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_low_cell_v_id m4 : 24|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_high_cell_v_id m4 : 16|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_low_thermistor_id m4 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_unused_7 m3 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_high_opencell_id m3 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_low_intres_id m3 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_high_intres_id m3 : 32|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_low_cell_v_id m3 : 24|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_high_cell_v_id m3 : 16|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_low_thermistor_id m3 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_unused_7 m2 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_high_opencell_id m2 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_low_intres_id m2 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_high_intres_id m2 : 32|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_low_cell_v_id m2 : 24|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_high_cell_v_id m2 : 16|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_low_thermistor_id m2 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_unused_7 m1 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_high_opencell_id m1 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_low_intres_id m1 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_high_intres_id m1 : 32|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_low_cell_v_id m1 : 24|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_high_cell_v_id m1 : 16|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_low_thermistor_id m1 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS_MSGB_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273610 BMS_MSGA: 8 BMS
+ SG_ BMS6_high_thermistor_id m6 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_low_opencell_id m6 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_min_pack_v m6 : 32|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS6_max_pack_v m6 : 16|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS6_populated_cells m6 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_high_thermistor_id m5 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_low_opencell_id m5 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_min_pack_v m5 : 32|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS5_max_pack_v m5 : 16|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS5_populated_cells m5 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_high_thermistor_id m4 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_low_opencell_id m4 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_min_pack_v m4 : 32|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS4_max_pack_v m4 : 16|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS4_populated_cells m4 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_high_thermistor_id m3 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_low_opencell_id m3 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_min_pack_v m3 : 32|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS3_max_pack_v m3 : 16|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS3_populated_cells m3 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_high_thermistor_id m2 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_low_opencell_id m2 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_min_pack_v m2 : 32|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS2_max_pack_v m2 : 16|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS2_populated_cells m2 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_high_thermistor_id m1 : 56|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_low_opencell_id m1 : 48|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_min_pack_v m1 : 32|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS1_max_pack_v m1 : 16|16@1+ (0.1,0) [0|410] "V"  CVC
+ SG_ BMS1_populated_cells m1 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS_MSGA_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273609 BMS_MSG9: 8 BMS
+ SG_ BMS6_adaptive_amp_hour m6 : 48|16@1+ (0.1,0) [0|72] "Ah"  CVC
+ SG_ BMS6_reserved_2 m6 : 40|8@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_reserved_1 m6 : 39|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_input_ps_failsafe_active m6 : 38|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_thermistor_b_value_invalid m6 : 37|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_charge_interlock_active m6 : 36|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_cell_balancing_active m6 : 35|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_relay_failsafe_active m6 : 34|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_current_failsafe_active m6 : 33|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_voltage_failsafe_active m6 : 32|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_isolation_threshold m6 : 16|16@1+ (0.1,0) [0|6553.5] ""  CVC
+ SG_ BMS6_max_cell_number m6 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_adaptive_amp_hour m5 : 48|16@1+ (0.1,0) [0|72] "Ah"  CVC
+ SG_ BMS5_reserved_2 m5 : 40|8@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_reserved_1 m5 : 39|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_input_ps_failsafe_active m5 : 38|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_thermistor_b_value_invalid m5 : 37|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_charge_interlock_active m5 : 36|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_cell_balancing_active m5 : 35|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_relay_failsafe_active m5 : 34|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_current_failsafe_active m5 : 33|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_voltage_failsafe_active m5 : 32|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_isolation_threshold m5 : 16|16@1+ (0.1,0) [0|6553.5] ""  CVC
+ SG_ BMS5_max_cell_number m5 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_adaptive_amp_hour m4 : 48|16@1+ (0.1,0) [0|72] "Ah"  CVC
+ SG_ BMS4_reserved_2 m4 : 40|8@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_reserved_1 m4 : 39|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_input_ps_failsafe_active m4 : 38|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_thermistor_b_value_invalid m4 : 37|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_charge_interlock_active m4 : 36|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_cell_balancing_active m4 : 35|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_relay_failsafe_active m4 : 34|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_current_failsafe_active m4 : 33|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_voltage_failsafe_active m4 : 32|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_isolation_threshold m4 : 16|16@1+ (0.1,0) [0|6553.5] ""  CVC
+ SG_ BMS4_max_cell_number m4 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_adaptive_amp_hour m3 : 48|16@1+ (0.1,0) [0|72] "Ah"  CVC
+ SG_ BMS3_reserved_2 m3 : 40|8@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_reserved_1 m3 : 39|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_input_ps_failsafe_active m3 : 38|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_thermistor_b_value_invalid m3 : 37|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_charge_interlock_active m3 : 36|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_cell_balancing_active m3 : 35|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_relay_failsafe_active m3 : 34|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_current_failsafe_active m3 : 33|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_voltage_failsafe_active m3 : 32|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_isolation_threshold m3 : 16|16@1+ (0.1,0) [0|6553.5] ""  CVC
+ SG_ BMS3_max_cell_number m3 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_adaptive_amp_hour m2 : 48|16@1+ (0.1,0) [0|72] "Ah"  CVC
+ SG_ BMS2_reserved_2 m2 : 40|8@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_reserved_1 m2 : 39|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_input_ps_failsafe_active m2 : 38|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_thermistor_b_value_invalid m2 : 37|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_charge_interlock_active m2 : 36|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_cell_balancing_active m2 : 35|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_relay_failsafe_active m2 : 34|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_current_failsafe_active m2 : 33|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_voltage_failsafe_active m2 : 32|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_isolation_threshold m2 : 16|16@1+ (0.1,0) [0|6553.5] ""  CVC
+ SG_ BMS2_max_cell_number m2 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_adaptive_amp_hour m1 : 48|16@1+ (0.1,0) [0|72] "Ah"  CVC
+ SG_ BMS1_reserved_2 m1 : 40|8@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_reserved_1 m1 : 39|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_input_ps_failsafe_active m1 : 38|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_thermistor_b_value_invalid m1 : 37|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_charge_interlock_active m1 : 36|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_cell_balancing_active m1 : 35|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_relay_failsafe_active m1 : 34|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_current_failsafe_active m1 : 33|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_voltage_failsafe_active m1 : 32|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_isolation_threshold m1 : 16|16@1+ (0.1,0) [0|6553.5] ""  CVC
+ SG_ BMS1_max_cell_number m1 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS_MSG9_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273608 BMS_MSG8: 8 BMS
+ SG_ BMS6_isolation_clipping m6 : 48|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS6_shortest_wave m6 : 32|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS6_isolation_adc m6 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS6_adaptive_soc m6 : 8|8@1+ (0.5,0) [0|127] "%"  CVC
+ SG_ BMS5_isolation_clipping m5 : 48|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS5_shortest_wave m5 : 32|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS5_isolation_adc m5 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS5_adaptive_soc m5 : 8|8@1+ (0.5,0) [0|127] "%"  CVC
+ SG_ BMS4_isolation_clipping m4 : 48|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS4_shortest_wave m4 : 32|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS4_isolation_adc m4 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS4_adaptive_soc m4 : 8|8@1+ (0.5,0) [0|127] "%"  CVC
+ SG_ BMS3_isolation_clipping m3 : 48|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS3_shortest_wave m3 : 32|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS3_isolation_adc m3 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS3_adaptive_soc m3 : 8|8@1+ (0.5,0) [0|127] "%"  CVC
+ SG_ BMS2_isolation_clipping m2 : 48|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS2_shortest_wave m2 : 32|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS2_isolation_adc m2 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS2_adaptive_soc m2 : 8|8@1+ (0.5,0) [0|127] "%"  CVC
+ SG_ BMS1_isolation_clipping m1 : 48|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS1_shortest_wave m1 : 32|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS1_isolation_adc m1 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS1_adaptive_soc m1 : 8|8@1+ (0.5,0) [0|127] "%"  CVC
+ SG_ BMS_MSG8_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273607 BMS_MSG7: 8 BMS
+ SG_ BMS6_input_supply_v m6 : 48|16@1+ (0.1,0) [0|32] "V"  CVC
+ SG_ BMS5_input_supply_v m5 : 48|16@1+ (0.1,0) [0|32] "V"  CVC
+ SG_ BMS4_input_supply_v m4 : 48|16@1+ (0.1,0) [0|32] "V"  CVC
+ SG_ BMS3_input_supply_v m3 : 48|16@1+ (0.1,0) [0|32] "V"  CVC
+ SG_ BMS2_input_supply_v m2 : 48|16@1+ (0.1,0) [0|32] "V"  CVC
+ SG_ BMS1_input_supply_v m1 : 48|16@1+ (0.1,0) [0|32] "V"  CVC
+ SG_ BMS6_low_open_cell_v m6 : 32|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS5_low_open_cell_v m5 : 32|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS4_low_open_cell_v m4 : 32|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS3_low_open_cell_v m3 : 32|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS2_low_open_cell_v m2 : 32|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS1_low_open_cell_v m1 : 32|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS6_open_cell_v m6 : 16|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS5_open_cell_v m5 : 16|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS4_open_cell_v m4 : 16|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS3_open_cell_v m3 : 16|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS2_open_cell_v m2 : 16|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS1_open_cell_v m1 : 16|16@1+ (0.0001,0) [0|5] "V"  CVC
+ SG_ BMS6_high_temperature m6 : 8|8@1+ (1,0) [0|80] "C"  CVC
+ SG_ BMS5_high_temperature m5 : 8|8@1+ (1,0) [0|80] "C"  CVC
+ SG_ BMS4_high_temperature m4 : 8|8@1+ (1,0) [0|80] "C"  CVC
+ SG_ BMS3_high_temperature m3 : 8|8@1+ (1,0) [0|80] "C"  CVC
+ SG_ BMS2_high_temperature m2 : 8|8@1+ (1,0) [0|80] "C"  CVC
+ SG_ BMS1_high_temperature m1 : 8|8@1+ (1,0) [0|80] "C"  CVC
+ SG_ BMS_MSG7_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273606 BMS_MSG6: 8 BMS
+ SG_ BMS6_avg_cell_resistance m6 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS6_high_cell_resistance m6 : 16|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS6_low_temperature m6 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS6_low_cell_resistance m6 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS5_avg_cell_resistance m5 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS5_high_cell_resistance m5 : 16|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS5_low_temperature m5 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS5_low_cell_resistance m5 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS4_avg_cell_resistance m4 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS4_high_cell_resistance m4 : 16|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS4_low_temperature m4 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS4_low_cell_resistance m4 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS3_avg_cell_resistance m3 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS3_high_cell_resistance m3 : 16|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS3_low_temperature m3 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS3_low_cell_resistance m3 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS2_avg_cell_resistance m2 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS2_high_cell_resistance m2 : 16|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS2_low_temperature m2 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS2_low_cell_resistance m2 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS1_avg_cell_resistance m1 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS1_high_cell_resistance m1 : 16|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS1_low_temperature m1 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS1_low_cell_resistance m1 : 32|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS_MSG6_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273605 BMS_MSG5: 8 BMS
+ SG_ BMS6_pack_amp_hrs m6 : 32|16@1+ (0.1,0) [0|6553.5] "Ah"  CVC
+ SG_ BMS6_pack_open_voltage m6 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS6_avg_temp m6 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS6_avg_cell_voltage m6 : 48|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS5_pack_amp_hrs m5 : 32|16@1+ (0.1,0) [0|6553.5] "Ah"  CVC
+ SG_ BMS5_pack_open_voltage m5 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS5_avg_temp m5 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS5_avg_cell_voltage m5 : 48|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS4_pack_amp_hrs m4 : 32|16@1+ (0.1,0) [0|6553.5] "Ah"  CVC
+ SG_ BMS4_pack_open_voltage m4 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS4_avg_temp m4 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS4_avg_cell_voltage m4 : 48|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS3_pack_amp_hrs m3 : 32|16@1+ (0.1,0) [0|6553.5] "Ah"  CVC
+ SG_ BMS3_pack_open_voltage m3 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS3_avg_temp m3 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS3_avg_cell_voltage m3 : 48|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS2_pack_amp_hrs m2 : 32|16@1+ (0.1,0) [0|6553.5] "Ah"  CVC
+ SG_ BMS2_pack_open_voltage m2 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS2_avg_temp m2 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS2_avg_cell_voltage m2 : 48|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS1_pack_amp_hrs m1 : 32|16@1+ (0.1,0) [0|6553.5] "Ah"  CVC
+ SG_ BMS1_pack_open_voltage m1 : 16|16@1+ (0.1,0) [0|6553.5] "V"  CVC
+ SG_ BMS1_avg_temp m1 : 8|8@1- (1,0) [-50|90] "C"  CVC
+ SG_ BMS1_avg_cell_voltage m1 : 48|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS_MSG5_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273604 BMS_MSG4: 8 BMS
+ SG_ BMS6_pack_resistance m6 : 48|16@1+ (1,0) [0|65535] "mOhms"  CVC
+ SG_ BMS6_pack_dcl m6 : 16|16@1+ (1,0) [0|116] "A"  CVC
+ SG_ BMS6_pack_ccl m6 : 32|16@1+ (1,0) [0|41] "A"  CVC
+ SG_ BMS6_internal_temp m6 : 8|8@1- (1,0) [-128|127] "C"  CVC
+ SG_ BMS5_pack_resistance m5 : 48|16@1+ (1,0) [0|65535] "mOhms"  CVC
+ SG_ BMS5_pack_dcl m5 : 16|16@1+ (1,0) [0|116] "A"  CVC
+ SG_ BMS5_pack_ccl m5 : 32|16@1+ (1,0) [0|41] "A"  CVC
+ SG_ BMS5_internal_temp m5 : 8|8@1- (1,0) [-128|127] "C"  CVC
+ SG_ BMS4_pack_resistance m4 : 48|16@1+ (1,0) [0|65535] "mOhms"  CVC
+ SG_ BMS4_pack_dcl m4 : 16|16@1+ (1,0) [0|116] "A"  CVC
+ SG_ BMS4_pack_ccl m4 : 32|16@1+ (1,0) [0|41] "A"  CVC
+ SG_ BMS4_internal_temp m4 : 8|8@1- (1,0) [-128|127] "C"  CVC
+ SG_ BMS3_pack_resistance m3 : 48|16@1+ (1,0) [0|65535] "mOhms"  CVC
+ SG_ BMS3_pack_dcl m3 : 16|16@1+ (1,0) [0|116] "A"  CVC
+ SG_ BMS3_pack_ccl m3 : 32|16@1+ (1,0) [0|41] "A"  CVC
+ SG_ BMS3_internal_temp m3 : 8|8@1- (1,0) [-128|127] "C"  CVC
+ SG_ BMS2_pack_resistance m2 : 48|16@1+ (1,0) [0|65535] "mOhms"  CVC
+ SG_ BMS2_pack_dcl m2 : 16|16@1+ (1,0) [0|116] "A"  CVC
+ SG_ BMS2_pack_ccl m2 : 32|16@1+ (1,0) [0|41] "A"  CVC
+ SG_ BMS2_internal_temp m2 : 8|8@1- (1,0) [-128|127] "C"  CVC
+ SG_ BMS1_pack_resistance m1 : 48|16@1+ (1,0) [0|65535] "mOhms"  CVC
+ SG_ BMS1_pack_dcl m1 : 16|16@1+ (1,0) [0|116] "A"  CVC
+ SG_ BMS1_pack_ccl m1 : 32|16@1+ (1,0) [0|41] "A"  CVC
+ SG_ BMS1_internal_temp m1 : 8|8@1- (1,0) [-128|127] "C"  CVC
+ SG_ BMS_MSG4_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273603 BMS_MSG3: 8 BMS
+ SG_ BMS6_relay_state m6 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS6_low_cell_voltage m6 : 32|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS6_high_cell_voltage m6 : 16|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS6_rolling_counter m6 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_relay_state m5 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS5_low_cell_voltage m5 : 32|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS5_high_cell_voltage m5 : 16|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS5_rolling_counter m5 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_relay_state m4 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS4_low_cell_voltage m4 : 32|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS4_high_cell_voltage m4 : 16|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS4_rolling_counter m4 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_relay_state m3 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS3_low_cell_voltage m3 : 32|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS3_high_cell_voltage m3 : 16|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS3_rolling_counter m3 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_relay_state m2 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS2_low_cell_voltage m2 : 32|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS2_high_cell_voltage m2 : 16|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS2_rolling_counter m2 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_relay_state m1 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS1_low_cell_voltage m1 : 32|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS1_high_cell_voltage m1 : 16|16@1+ (0.0001,0) [0|6.5535] "V"  CVC
+ SG_ BMS1_rolling_counter m1 : 8|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS_MSG3_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273602 BMS_MSG2: 8 BMS
+ SG_ BMS6_pack_cycles m6 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS6_pack_inst_v m6 : 32|16@1+ (0.1,0) [0|500] "V"  CVC
+ SG_ BMS6_pack_current m6 : 16|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS6_pack_soc m6 : 8|8@1+ (0.5,0) [0|127.5] "%"  CVC
+ SG_ BMS5_pack_cycles m5 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS5_pack_inst_v m5 : 32|16@1+ (0.1,0) [0|500] "V"  CVC
+ SG_ BMS5_pack_current m5 : 16|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS5_pack_soc m5 : 8|8@1+ (0.5,0) [0|127.5] "%"  CVC
+ SG_ BMS4_pack_cycles m4 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS4_pack_inst_v m4 : 32|16@1+ (0.1,0) [0|500] "V"  CVC
+ SG_ BMS4_pack_current m4 : 16|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS4_pack_soc m4 : 8|8@1+ (0.5,0) [0|127.5] "%"  CVC
+ SG_ BMS3_pack_cycles m3 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS3_pack_inst_v m3 : 32|16@1+ (0.1,0) [0|500] "V"  CVC
+ SG_ BMS3_pack_current m3 : 16|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS3_pack_soc m3 : 8|8@1+ (0.5,0) [0|127.5] "%"  CVC
+ SG_ BMS2_pack_cycles m2 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS2_pack_inst_v m2 : 32|16@1+ (0.1,0) [0|500] "V"  CVC
+ SG_ BMS2_pack_current m2 : 16|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS2_pack_soc m2 : 8|8@1+ (0.5,0) [0|127.5] "%"  CVC
+ SG_ BMS1_pack_cycles m1 : 48|16@1+ (1,0) [0|65535] ""  CVC
+ SG_ BMS1_pack_inst_v m1 : 32|16@1+ (0.1,0) [0|500] "V"  CVC
+ SG_ BMS1_pack_current m1 : 16|16@1- (0.1,0) [-300|300] "A"  CVC
+ SG_ BMS1_pack_soc m1 : 8|8@1+ (0.5,0) [0|127.5] "%"  CVC
+ SG_ BMS_MSG2_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2149273601 BMS_MSG1: 8 BMS
+ SG_ BMS1_internal_logic_fault m1 : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_int_heatsink_therm_fault m1 : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_hv_isolation_fault m1 : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_discharge_en_relay_fault m1 : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_charge_en_relay_fault m1 : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_weak_pack_fault m1 : 20|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_weak_cell_fault m1 : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_thermistor_fault m1 : 22|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_low_cell_voltage_fault m1 : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_fan_monitor_fault m1 : 21|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_current_sensor_fault m1 : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_cell_open_wiring_fault m1 : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_can_comm_fault m1 : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_voltage_failsafe m1 : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_int_cell_fault m1 : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_input_pwr_failsafe m1 : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_discharge_relay m1 : 8|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_current_failsafe m1 : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_charger_safety m1 : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_charge_relay m1 : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_balancing_active m1 : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_internal_logic_fault m2 : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_int_heatsink_therm_fault m2 : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_hv_isolation_fault m2 : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_discharge_en_relay_fault m2 : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_charge_en_relay_fault m2 : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_weak_pack_fault m2 : 20|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_weak_cell_fault m2 : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_thermistor_fault m2 : 22|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_low_cell_voltage_fault m2 : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_fan_monitor_fault m2 : 21|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_current_sensor_fault m2 : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_cell_open_wiring_fault m2 : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_can_comm_fault m2 : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_voltage_failsafe m2 : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_int_cell_fault m2 : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_input_pwr_failsafe m2 : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_discharge_relay m2 : 8|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_current_failsafe m2 : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_charger_safety m2 : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_charge_relay m2 : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_balancing_active m2 : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_internal_logic_fault m3 : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_int_heatsink_therm_fault m3 : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_hv_isolation_fault m3 : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_discharge_en_relay_fault m3 : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_charge_en_relay_fault m3 : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_weak_pack_fault m3 : 20|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_weak_cell_fault m3 : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_thermistor_fault m3 : 22|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_low_cell_voltage_fault m3 : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_fan_monitor_fault m3 : 21|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_current_sensor_fault m3 : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_cell_open_wiring_fault m3 : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_can_comm_fault m3 : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_voltage_failsafe m3 : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_int_cell_fault m3 : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_input_pwr_failsafe m3 : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_discharge_relay m3 : 8|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_current_failsafe m3 : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_charger_safety m3 : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_charge_relay m3 : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_balancing_active m3 : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_internal_logic_fault m4 : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_int_heatsink_therm_fault m4 : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_hv_isolation_fault m4 : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_discharge_en_relay_fault m4 : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_charge_en_relay_fault m4 : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_weak_pack_fault m4 : 20|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_weak_cell_fault m4 : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_thermistor_fault m4 : 22|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_low_cell_voltage_fault m4 : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_fan_monitor_fault m4 : 21|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_current_sensor_fault m4 : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_cell_open_wiring_fault m4 : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_can_comm_fault m4 : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_voltage_failsafe m4 : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_int_cell_fault m4 : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_input_pwr_failsafe m4 : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_discharge_relay m4 : 8|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_current_failsafe m4 : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_charger_safety m4 : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_charge_relay m4 : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_balancing_active m4 : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_internal_logic_fault m5 : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_int_heatsink_therm_fault m5 : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_hv_isolation_fault m5 : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_discharge_en_relay_fault m5 : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_charge_en_relay_fault m5 : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_weak_pack_fault m5 : 20|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_weak_cell_fault m5 : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_thermistor_fault m5 : 22|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_low_cell_voltage_fault m5 : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_fan_monitor_fault m5 : 21|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_current_sensor_fault m5 : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_cell_open_wiring_fault m5 : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_can_comm_fault m5 : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_voltage_failsafe m5 : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_int_cell_fault m5 : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_input_pwr_failsafe m5 : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_discharge_relay m5 : 8|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_current_failsafe m5 : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_charger_safety m5 : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_charge_relay m5 : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_balancing_active m5 : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_internal_logic_fault m6 : 28|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_int_heatsink_therm_fault m6 : 27|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_hv_isolation_fault m6 : 24|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_discharge_en_relay_fault m6 : 26|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_charge_en_relay_fault m6 : 25|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_weak_pack_fault m6 : 20|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_weak_cell_fault m6 : 16|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_thermistor_fault m6 : 22|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_low_cell_voltage_fault m6 : 17|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_fan_monitor_fault m6 : 21|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_current_sensor_fault m6 : 19|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_cell_open_wiring_fault m6 : 18|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_can_comm_fault m6 : 23|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_voltage_failsafe m6 : 11|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_int_cell_fault m6 : 15|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_input_pwr_failsafe m6 : 13|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_discharge_relay m6 : 8|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_current_failsafe m6 : 12|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_charger_safety m6 : 10|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_charge_relay m6 : 9|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_balancing_active m6 : 14|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_pack_health m6 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS6_curr_lim_low_soc m6 : 48|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_dcl_res m6 : 49|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_dcl_temp m6 : 50|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_lcv m6 : 51|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_lpackv m6 : 52|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_vfailsafe m6 : 54|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_commfailsafe m6 : 55|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_high_soc m6 : 57|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_ccl_res m6 : 58|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_ccl_temp m6 : 59|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_hcv m6 : 60|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_hpackv m6 : 61|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_chglatch m6 : 62|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS6_curr_lim_alt_mpi m6 : 63|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_pack_health m5 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS5_curr_lim_low_soc m5 : 48|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_dcl_res m5 : 49|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_dcl_temp m5 : 50|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_lcv m5 : 51|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_lpackv m5 : 52|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_vfailsafe m5 : 54|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_commfailsafe m5 : 55|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_high_soc m5 : 57|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_ccl_res m5 : 58|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_ccl_temp m5 : 59|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_hcv m5 : 60|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_hpackv m5 : 61|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_chglatch m5 : 62|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS5_curr_lim_alt_mpi m5 : 63|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_pack_health m4 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS4_curr_lim_low_soc m4 : 48|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_dcl_res m4 : 49|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_dcl_temp m4 : 50|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_lcv m4 : 51|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_lpackv m4 : 52|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_vfailsafe m4 : 54|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_commfailsafe m4 : 55|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_high_soc m4 : 57|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_ccl_res m4 : 58|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_ccl_temp m4 : 59|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_hcv m4 : 60|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_hpackv m4 : 61|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_chglatch m4 : 62|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS4_curr_lim_alt_mpi m4 : 63|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_pack_health m3 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS3_curr_lim_low_soc m3 : 48|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_dcl_res m3 : 49|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_dcl_temp m3 : 50|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_lcv m3 : 51|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_lpackv m3 : 52|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_vfailsafe m3 : 54|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_commfailsafe m3 : 55|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_high_soc m3 : 57|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_ccl_res m3 : 58|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_ccl_temp m3 : 59|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_hcv m3 : 60|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_hpackv m3 : 61|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_chglatch m3 : 62|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS3_curr_lim_alt_mpi m3 : 63|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_pack_health m2 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS2_curr_lim_low_soc m2 : 48|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_dcl_res m2 : 49|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_dcl_temp m2 : 50|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_lcv m2 : 51|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_lpackv m2 : 52|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_vfailsafe m2 : 54|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_commfailsafe m2 : 55|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_high_soc m2 : 57|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_ccl_res m2 : 58|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_ccl_temp m2 : 59|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_hcv m2 : 60|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_hpackv m2 : 61|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_chglatch m2 : 62|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS2_curr_lim_alt_mpi m2 : 63|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_pack_health m1 : 40|8@1+ (1,0) [0|255] ""  CVC
+ SG_ BMS1_curr_lim_low_soc m1 : 48|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_dcl_res m1 : 49|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_dcl_temp m1 : 50|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_lcv m1 : 51|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_lpackv m1 : 52|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_vfailsafe m1 : 54|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_commfailsafe m1 : 55|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_high_soc m1 : 57|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_ccl_res m1 : 58|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_ccl_temp m1 : 59|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_hcv m1 : 60|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_hpackv m1 : 61|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_chglatch m1 : 62|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS1_curr_lim_alt_mpi m1 : 63|1@1+ (1,0) [0|1] ""  CVC
+ SG_ BMS_MSG1_idx M : 0|8@1+ (1,0) [1|6] ""  CVC
+
+BO_ 2684353280 Simulator: 8 CAN_simulator
+ SG_ sim_A11_output_state m11 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A11_input_state m11 : 55|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A11_current m11 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_A11_voltage m11 : 23|16@0+ (0.001,0) [0|32] ""  CVC
+ SG_ sim_B13_output_state m13 : 63|8@0+ (1,0) [0|9] ""  CVC
+ SG_ sim_B13_input_state m13 : 55|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B13_current m13 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_B13_voltage m13 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C11_output_state m11 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C11_input_state m11 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_C11_current m11 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_C11_voltage m11 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E02_output_state m2 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E02_input_state m2 : 55|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E02_current m2 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_E02_voltage m2 : 23|16@0+ (0.055,0) [0|550] ""  CVC
+ SG_ sim_E01_output_state m1 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E01_input_state m1 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_E01_current m1 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_E01_voltage m1 : 23|16@0+ (1,0) [0|12000] ""  CVC
+ SG_ sim_E09_output_state m9 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E09_input_state m9 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_E09_current m9 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_E09_voltage m9 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B16_output_state m16 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B16_input_state m16 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_B16_current m16 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_B16_voltage m16 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A15_output_state m15 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A15_input_state m15 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_A15_current m15 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_A15_voltage m15 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A16_output_state m16 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A16_input_state m16 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_A16_current m16 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_A16_voltage m16 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A17_output_state m17 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A17_input_state m17 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_A17_current m17 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_A17_voltage m17 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A18_output_state m18 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_A18_input_state m18 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_A18_current m18 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_A18_voltage m18 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E14_output_state m14 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E14_input_state m14 : 55|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E14_current m14 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_E14_voltage m14 : 23|16@0+ (1,0) [0|5000] ""  CVC
+ SG_ sim_E15_output_state m15 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E15_input_state m15 : 55|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E15_current m15 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_E15_voltage m15 : 23|16@0+ (1,0) [0|5000] ""  CVC
+ SG_ sim_E16_output_state m16 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E16_input_state m16 : 55|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_E16_current m16 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_E16_voltage m16 : 23|16@0+ (0.03125,-15.625) [-15|125] ""  CVC
+ SG_ sim_B11_output_state m11 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B11_input_state m11 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_B11_current m11 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_B11_voltage m11 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B17_output_state m17 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B17_input_state m17 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_B17_current m17 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_B17_voltage m17 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C18_output_state m18 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C18_input_state m18 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_C18_current m18 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_C18_voltage m18 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D11_output_state m11 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D11_input_state m11 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_D11_current m11 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_D11_voltage m11 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B18_output_state m18 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_B18_input_state m18 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_B18_current m18 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_B18_voltage m18 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C15_output_state m15 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C15_input_state m15 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_C15_current m15 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_C15_voltage m15 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D15_output_state m15 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D15_input_state m15 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_D15_current m15 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_D15_voltage m15 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D16_output_state m16 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D16_input_state m16 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_D16_current m16 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_D16_voltage m16 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C16_output_state m16 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C16_input_state m16 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_C16_current m16 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_C16_voltage m16 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C17_output_state m17 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_C17_input_state m17 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_C17_current m17 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_C17_voltage m17 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D17_output_state m17 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D17_input_state m17 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_D17_current m17 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_D17_voltage m17 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D18_output_state m18 : 63|8@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_D18_input_state m18 : 55|8@0+ (1,0) [0|2] ""  CVC
+ SG_ sim_D18_current m18 : 39|16@0+ (1,0) [0|3000] ""  CVC
+ SG_ sim_D18_voltage m18 : 23|16@0+ (1,0) [0|0] ""  CVC
+ SG_ sim_conn_A_pin m0M : 15|8@0+ (1,0) [1|18] ""  CVC
+ SG_ sim_conn_B_pin m1M : 15|8@0+ (1,0) [1|18] ""  CVC
+ SG_ sim_conn_C_pin m2M : 15|8@0+ (1,0) [1|18] ""  CVC
+ SG_ sim_conn_D_pin m3M : 15|8@0+ (1,0) [1|18] ""  CVC
+ SG_ sim_conn_E_pin m4M : 15|8@0+ (1,0) [1|18] ""  CVC
+ SG_ sim_conn_num M : 7|8@0+ (1,0) [0|4] ""  CVC
+
+
+
+CM_ BU_ Charger_4 "Bel charger 4";
+CM_ BU_ Charger_3 "Bel charger 3";
+CM_ BU_ Charger_2 "Bel charger 2";
+CM_ BU_ Charger_1 "Bel charger 1";
+CM_ BU_ Screen "The 7in Service Screen.";
+CM_ BU_ PDU_expander "A master expander for the PDU I/O.";
+CM_ BU_ CVC "The Central Vehicle Controller";
+CM_ BU_ BMS "A generic BMS implementation. There are 6 BMSs";
+CM_ BU_ Telematics "The CanEdge2 telematics unit";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 2147483647;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BU_  "DeviceInfo" STRING ;
+BA_DEF_ BO_  "CanDootDecode" ENUM  "No","Yes";
+BA_DEF_ BO_  "CanDootPaused" ENUM  "No","Yes";
+BA_DEF_ BO_  "CanDootSimulate" ENUM  "No","Yes";
+BA_DEF_ BO_  "CanDootSimulateCycleTime" INT 0 50000;
+BA_DEF_ SG_  "CanDootHidden" ENUM  "No","Yes";
+BA_DEF_ BO_  "CanDootHideAll" ENUM  "No","Yes";
+BA_DEF_ SG_  "CanDootGroup" ENUM  "None","g1","g2","g3","g4","g5","g6","g7","g8","g9","gA","gB","gC","gD","gE","gF";
+BA_DEF_ BO_  "CANFD_BRS" ENUM  "0","1";
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "NmStationAddress" 254;
+BA_DEF_DEF_  "DeviceInfo" "";
+BA_DEF_DEF_  "CanDootDecode" "No";
+BA_DEF_DEF_  "CanDootPaused" "Yes";
+BA_DEF_DEF_  "CanDootSimulate" "No";
+BA_DEF_DEF_  "CanDootSimulateCycleTime" 1500;
+BA_DEF_DEF_  "CanDootHidden" "No";
+BA_DEF_DEF_  "CanDootHideAll" "No";
+BA_DEF_DEF_  "CanDootGroup" "None";
+BA_DEF_DEF_  "CANFD_BRS" "1";
+BA_DEF_DEF_  "VFrameFormat" "ExtendedCAN";
+BA_ "BusType" "CAN FD";
+BA_ "DBName" "loco_500";
+BA_ "DeviceInfo" BU_ Charger_4 "Bel 25kW 600V input";
+BA_ "NmStationAddress" BU_ Charger_4 209;
+BA_ "DeviceInfo" BU_ Charger_3 "Bel 25kW 600V input";
+BA_ "NmStationAddress" BU_ Charger_3 210;
+BA_ "DeviceInfo" BU_ Charger_2 "Bel 25kW 600V input";
+BA_ "NmStationAddress" BU_ Charger_2 211;
+BA_ "DeviceInfo" BU_ Charger_1 "Bel 25kW 600V input";
+BA_ "NmStationAddress" BU_ Charger_1 248;
+BA_ "NmStationAddress" BU_ Screen 249;
+BA_ "DeviceInfo" BU_ Screen "HED CL-711_111";
+BA_ "NmStationAddress" BU_ PDU_expander 250;
+BA_ "DeviceInfo" BU_ PDU_expander "HED CL-449-100-11";
+BA_ "DeviceInfo" BU_ CVC "HED CL450-101-10";
+BA_ "NmStationAddress" BU_ CVC 17;
+BA_ "NmStationAddress" BU_ BMS 251;
+BA_ "DeviceInfo" BU_ BMS "Orion BMS2";
+BA_ "NmStationAddress" BU_ Telematics 252;
+BA_ "DeviceInfo" BU_ Telematics "CanEdge2";
+BA_ "NmStationAddress" BU_ CAN_simulator 244;
+BA_ "VFrameFormat" BO_ 2565853440 1;
+BA_ "VFrameFormat" BO_ 2565853696 1;
+BA_ "VFrameFormat" BO_ 2565853952 1;
+BA_ "VFrameFormat" BO_ 2565854208 1;
+BA_ "VFrameFormat" BO_ 2566903249 1;
+BA_ "VFrameFormat" BO_ 2566903250 1;
+BA_ "VFrameFormat" BO_ 2566903251 1;
+BA_ "VFrameFormat" BO_ 2566903252 1;
+BA_ "CanDootSimulate" BO_ 2566902993 1;
+BA_ "CanDootPaused" BO_ 2566902993 0;
+BA_ "VFrameFormat" BO_ 2566902993 1;
+BA_ "CanDootSimulate" BO_ 2566902994 1;
+BA_ "CanDootPaused" BO_ 2566902994 0;
+BA_ "VFrameFormat" BO_ 2566902994 1;
+BA_ "CanDootSimulate" BO_ 2566902995 1;
+BA_ "CanDootPaused" BO_ 2566902995 0;
+BA_ "VFrameFormat" BO_ 2566902995 1;
+BA_ "CanDootSimulate" BO_ 2566902996 1;
+BA_ "CanDootPaused" BO_ 2566902996 0;
+BA_ "VFrameFormat" BO_ 2566902996 1;
+BA_ "CanDootSimulate" BO_ 2566903761 1;
+BA_ "CanDootPaused" BO_ 2566903761 0;
+BA_ "VFrameFormat" BO_ 2566903761 1;
+BA_ "CanDootSimulate" BO_ 2566903762 1;
+BA_ "CanDootPaused" BO_ 2566903762 0;
+BA_ "VFrameFormat" BO_ 2566903762 1;
+BA_ "CanDootSimulate" BO_ 2566903763 1;
+BA_ "CanDootPaused" BO_ 2566903763 0;
+BA_ "VFrameFormat" BO_ 2566903763 1;
+BA_ "CanDootSimulate" BO_ 2566903764 1;
+BA_ "CanDootPaused" BO_ 2566903764 0;
+BA_ "VFrameFormat" BO_ 2566903764 1;
+BA_ "CanDootSimulate" BO_ 2566903505 1;
+BA_ "CanDootPaused" BO_ 2566903505 0;
+BA_ "VFrameFormat" BO_ 2566903505 1;
+BA_ "CanDootSimulate" BO_ 2566903506 1;
+BA_ "CanDootPaused" BO_ 2566903506 0;
+BA_ "VFrameFormat" BO_ 2566903506 1;
+BA_ "CanDootSimulate" BO_ 2566903507 1;
+BA_ "CanDootPaused" BO_ 2566903507 0;
+BA_ "VFrameFormat" BO_ 2566903507 1;
+BA_ "CanDootSimulate" BO_ 2566903508 1;
+BA_ "CanDootPaused" BO_ 2566903508 0;
+BA_ "VFrameFormat" BO_ 2566903508 1;
+BA_ "CanDootPaused" BO_ 2600513537 0;
+BA_ "CanDootDecode" BO_ 2600513537 1;
+BA_ "VFrameFormat" BO_ 2600513537 1;
+BA_ "CanDootDecode" BO_ 2600514018 1;
+BA_ "CanDootPaused" BO_ 2600514018 0;
+BA_ "VFrameFormat" BO_ 2600514018 1;
+BA_ "CanDootPaused" BO_ 2600514017 0;
+BA_ "CanDootDecode" BO_ 2600514017 1;
+BA_ "VFrameFormat" BO_ 2600514017 1;
+BA_ "CanDootSimulate" BO_ 2149515776 0;
+BA_ "CanDootPaused" BO_ 2149515776 0;
+BA_ "CanDootDecode" BO_ 2149515776 1;
+BA_ "VFrameFormat" BO_ 2149515776 1;
+BA_ "CanDootSimulate" BO_ 2149515520 1;
+BA_ "CanDootPaused" BO_ 2149515520 0;
+BA_ "VFrameFormat" BO_ 2149515520 1;
+BA_ "VFrameFormat" BO_ 2147545100 1;
+BA_ "CanDootDecode" BO_ 2147545100 1;
+BA_ "CanDootPaused" BO_ 2147545100 0;
+BA_ "VFrameFormat" BO_ 2147545099 1;
+BA_ "CanDootDecode" BO_ 2147545099 1;
+BA_ "CanDootPaused" BO_ 2147545099 0;
+BA_ "VFrameFormat" BO_ 2147545098 1;
+BA_ "CanDootDecode" BO_ 2147545098 1;
+BA_ "CanDootPaused" BO_ 2147545098 0;
+BA_ "VFrameFormat" BO_ 2147545097 1;
+BA_ "CanDootDecode" BO_ 2147545097 1;
+BA_ "CanDootPaused" BO_ 2147545097 0;
+BA_ "VFrameFormat" BO_ 2147545096 1;
+BA_ "CanDootDecode" BO_ 2147545096 1;
+BA_ "CanDootPaused" BO_ 2147545096 0;
+BA_ "VFrameFormat" BO_ 2147545095 1;
+BA_ "CanDootDecode" BO_ 2147545095 1;
+BA_ "CanDootPaused" BO_ 2147545095 0;
+BA_ "VFrameFormat" BO_ 2147545094 1;
+BA_ "CanDootDecode" BO_ 2147545094 1;
+BA_ "CanDootPaused" BO_ 2147545094 0;
+BA_ "VFrameFormat" BO_ 2147545093 1;
+BA_ "CanDootDecode" BO_ 2147545093 1;
+BA_ "CanDootPaused" BO_ 2147545093 0;
+BA_ "VFrameFormat" BO_ 2147545092 1;
+BA_ "CanDootDecode" BO_ 2147545092 1;
+BA_ "CanDootPaused" BO_ 2147545092 0;
+BA_ "VFrameFormat" BO_ 2147545091 1;
+BA_ "CanDootDecode" BO_ 2147545091 1;
+BA_ "CanDootPaused" BO_ 2147545091 0;
+BA_ "VFrameFormat" BO_ 2147545090 1;
+BA_ "CanDootDecode" BO_ 2147545090 1;
+BA_ "CanDootPaused" BO_ 2147545090 0;
+BA_ "VFrameFormat" BO_ 2147545089 1;
+BA_ "CanDootDecode" BO_ 2147545089 1;
+BA_ "CanDootPaused" BO_ 2147545089 0;
+BA_ "VFrameFormat" BO_ 2147484178 1;
+BA_ "VFrameFormat" BO_ 2147484177 1;
+BA_ "VFrameFormat" BO_ 2147484176 1;
+BA_ "VFrameFormat" BO_ 2149273612 1;
+BA_ "VFrameFormat" BO_ 2149273611 1;
+BA_ "VFrameFormat" BO_ 2149273610 1;
+BA_ "VFrameFormat" BO_ 2149273609 1;
+BA_ "VFrameFormat" BO_ 2149273608 1;
+BA_ "VFrameFormat" BO_ 2149273607 1;
+BA_ "VFrameFormat" BO_ 2149273606 1;
+BA_ "VFrameFormat" BO_ 2149273605 1;
+BA_ "VFrameFormat" BO_ 2149273604 1;
+BA_ "CanDootSimulate" BO_ 2149273603 1;
+BA_ "CanDootPaused" BO_ 2149273603 0;
+BA_ "VFrameFormat" BO_ 2149273603 1;
+BA_ "CanDootSimulate" BO_ 2149273602 1;
+BA_ "CanDootPaused" BO_ 2149273602 0;
+BA_ "VFrameFormat" BO_ 2149273602 1;
+BA_ "CanDootSimulate" BO_ 2149273601 1;
+BA_ "CanDootPaused" BO_ 2149273601 0;
+BA_ "VFrameFormat" BO_ 2149273601 1;
+BA_ "CanDootDecode" BO_ 2684353280 0;
+BA_ "CanDootPaused" BO_ 2684353280 0;
+BA_ "CanDootSimulate" BO_ 2684353280 1;
+BA_ "CanDootGroup" SG_ 2566903761 CHG4_VOUT_VDC 3;
+BA_ "GenSigStartValue" SG_ 2566903761 CHG4_CHASSIS_TEMP 62;
+BA_ "GenSigStartValue" SG_ 2566903761 CHG4_AMB_TEMP 62;
+BA_ "CanDootGroup" SG_ 2566903762 CHG3_VOUT_VDC 3;
+BA_ "GenSigStartValue" SG_ 2566903762 CHG3_CHASSIS_TEMP 62;
+BA_ "GenSigStartValue" SG_ 2566903762 CHG3_AMB_TEMP 62;
+BA_ "CanDootGroup" SG_ 2566903763 CHG2_VOUT_VDC 3;
+BA_ "GenSigStartValue" SG_ 2566903763 CHG2_CHASSIS_TEMP 62;
+BA_ "GenSigStartValue" SG_ 2566903763 CHG2_AMB_TEMP 62;
+BA_ "CanDootGroup" SG_ 2566903764 CHG1_VOUT_VDC 3;
+BA_ "GenSigStartValue" SG_ 2566903764 CHG1_CHASSIS_TEMP 62;
+BA_ "GenSigStartValue" SG_ 2566903764 CHG1_AMB_TEMP 62;
+BA_ "CanDootGroup" SG_ 2566903505 CHG4_V3_1_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903505 CHG4_V2_3_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903505 CHG4_V1_2_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903506 CHG3_V3_1_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903506 CHG3_V2_3_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903506 CHG3_V1_2_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903507 CHG2_V3_1_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903507 CHG2_V2_3_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903507 CHG2_V1_2_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903508 CHG1_V3_1_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903508 CHG1_V2_3_RMS_VAC 2;
+BA_ "CanDootGroup" SG_ 2566903508 CHG1_V1_2_RMS_VAC 2;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS6_pack_dcl 116;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS6_pack_ccl 41;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS5_pack_dcl 116;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS5_pack_ccl 41;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS4_pack_dcl 116;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS4_pack_ccl 41;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS3_pack_dcl 116;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS3_pack_ccl 41;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS2_pack_dcl 116;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS2_pack_ccl 41;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS1_pack_dcl 116;
+BA_ "GenSigStartValue" SG_ 2149273604 BMS1_pack_ccl 41;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS6_low_cell_voltage 36410;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS6_high_cell_voltage 36428;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS5_low_cell_voltage 36410;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS5_high_cell_voltage 36428;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS4_low_cell_voltage 36410;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS4_high_cell_voltage 36428;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS3_low_cell_voltage 36410;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS3_high_cell_voltage 36428;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS2_low_cell_voltage 36410;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS2_high_cell_voltage 36428;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS1_low_cell_voltage 36410;
+BA_ "GenSigStartValue" SG_ 2149273603 BMS1_high_cell_voltage 36428;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS6_pack_inst_v 3650;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS6_pack_soc 150;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS5_pack_inst_v 3650;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS5_pack_soc 150;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS4_pack_inst_v 3650;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS4_pack_soc 150;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS3_pack_inst_v 3650;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS3_pack_soc 150;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS2_pack_inst_v 3650;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS2_pack_soc 150;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS1_pack_inst_v 3650;
+BA_ "GenSigStartValue" SG_ 2149273602 BMS1_pack_soc 150;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS1_discharge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS1_charge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS2_discharge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS2_charge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS3_discharge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS3_charge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS4_discharge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS4_charge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS5_discharge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS5_charge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS6_discharge_relay 1;
+BA_ "GenSigStartValue" SG_ 2149273601 BMS6_charge_relay 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A11_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A11_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A11_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B13_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B13_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B13_current 1;
+BA_ "GenSigStartValue" SG_ 2684353280 sim_B13_current 22;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B13_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C11_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C11_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C11_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E02_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E02_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E02_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E01_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E01_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E01_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E09_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E09_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E09_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B16_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B16_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B16_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A15_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A15_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A15_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A16_output_state 1;
+BA_ "GenSigStartValue" SG_ 2684353280 sim_A16_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A16_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A16_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A17_output_state 1;
+BA_ "GenSigStartValue" SG_ 2684353280 sim_A17_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A17_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A17_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A18_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_A18_voltage 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E14_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E14_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E14_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E15_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E15_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E15_current 1;
+BA_ "GenSigStartValue" SG_ 2684353280 sim_E15_voltage 3800;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E16_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E16_input_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_E16_current 1;
+BA_ "GenSigStartValue" SG_ 2684353280 sim_E16_voltage 1108;
+BA_ "CanDootGroup" SG_ 2684353280 sim_B11_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B11_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B11_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B11_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_B17_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B17_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B17_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B17_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_C18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C18_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C18_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_D11_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D11_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D11_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D11_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_B18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B18_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_B18_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_C15_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C15_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C15_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C15_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_D15_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D15_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D15_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D15_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_D16_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D16_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D16_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D16_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_C16_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C16_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C16_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C16_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_C17_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C17_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C17_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_C17_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_D17_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D17_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D17_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D17_voltage 1;
+BA_ "CanDootGroup" SG_ 2684353280 sim_D18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D18_output_state 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D18_current 1;
+BA_ "CanDootHidden" SG_ 2684353280 sim_D18_voltage 1;
+VAL_ 2565853440 CHG4_multiplexor 64004 "Base address setting" 64003 "Battery under/over volt limit" 64002 "LED setting" 64001 "GPIO setting" 64000 "Charger setpoint" ;
+VAL_ 2565853696 CHG3_multiplexor 64004 "Base address setting" 64003 "Battery under/over volt limit" 64002 "LED setting" 64001 "GPIO setting" 64000 "Charger setpoint" ;
+VAL_ 2565853952 CHG2_multiplexor 64004 "Base address setting" 64003 "Battery under/over volt limit" 64002 "LED setting" 64001 "GPIO setting" 64000 "Charger setpoint" ;
+VAL_ 2565854208 CHG1_multiplexor 64004 "Base address setting" 64003 "Battery under/over volt limit" 64002 "LED setting" 64001 "GPIO setting" 64000 "Charger setpoint" ;
+VAL_ 2147545090 debug_2_critical_fault 9 "Loss of contactor control" 8 "Critical overcurrent" 7 "Critical high cell voltage" 6 "Critical BMS over temperature" 5 "Critical cell over temperature" 4 "Critical cell delta" 3 "Critical low cell voltage" 2 "Too many packs dropped" 1 "HVIL open" 0 "No critical faults" ;
+VAL_ 2147545090 debug_2_coolant_level_status 3 "sensor malfunction" 2 "critical" 1 "low" 0 "ok" ;
+VAL_ 2147545090 debug_2_contactor_state_machine 10 "Charge subpacks" 9 "Changeover precharge all" 8 "Changeover precharge pre" 7 "Changeover precharge neg" 6 "Bring in subpack" 5 "Precharge fail" 4 "Precharge success" 3 "Precharge" 2 "Skip select subpack" 1 "Select pre charge subpack" 0 "First pass" ;
+VAL_ 2147545089 debug_1_current_state 14 "Precharge" 13 "Shutdown" 12 "Emergency stop" 11 "Critical failure HV on" 10 "Critical failure HV off" 9 "Dead battery" 8 "Tow mode" 7 "Ready to drive" 6 "Diagnostic mode" 5 "Brake test mode" 4 "Post charge idle" 3 "Charging" 2 "Startup" 1 "Master closed no HV" 0 "Zero energy" ;
+SIG_GROUP_ 2565853440 CHG4_base_add_setting 1 : CHG4_dc_base_address;
+SIG_GROUP_ 2565853440 CHG4_bat_over_under_lim 1 : CHG4_batt_UV_limit CHG4_batt_OV_limit;
+SIG_GROUP_ 2565853440 CHG4_LED_setting 1 : CHG4_LED_setting;
+SIG_GROUP_ 2565853440 CHG4_GPIO_setting 1 : CHG4_gpo_en CHG4_wake_up_ECU;
+SIG_GROUP_ 2565853440 CHG4_setpoint 1 : CHG4_EN CHG4_BAT_VOLT_LIMIT CHG4_IOUT_SET;
+SIG_GROUP_ 2565853696 CHG3_base_add_setting 1 : CHG3_dc_base_address;
+SIG_GROUP_ 2565853696 CHG3_bat_over_under_lim 1 : CHG3_batt_UV_limit CHG3_batt_OV_limit;
+SIG_GROUP_ 2565853696 CHG3_LED_setting 1 : CHG3_LED_setting;
+SIG_GROUP_ 2565853696 CHG3_GPIO_setting 1 : CHG3_gpo_en CHG3_wake_up_ECU;
+SIG_GROUP_ 2565853696 CHG3_setpoint 1 : CHG3_EN CHG3_BAT_VOLT_LIMIT CHG3_IOUT_SET;
+SIG_GROUP_ 2565853952 CHG2_base_add_setting 1 : CHG2_dc_base_address;
+SIG_GROUP_ 2565853952 CHG2_bat_over_under_lim 1 : CHG2_batt_UV_limit CHG2_batt_OV_limit;
+SIG_GROUP_ 2565853952 CHG2_LED_setting 1 : CHG2_LED_setting;
+SIG_GROUP_ 2565853952 CHG2_GPIO_setting 1 : CHG2_gpo_en CHG2_wake_up_ECU;
+SIG_GROUP_ 2565853952 CHG2_setpoint 1 : CHG2_EN CHG2_BAT_VOLT_LIMIT CHG2_IOUT_SET;
+SIG_GROUP_ 2565854208 CHG1_base_add_setting 1 : CHG1_dc_base_address;
+SIG_GROUP_ 2565854208 CHG1_bat_over_under_lim 1 : CHG1_batt_UV_limit CHG1_batt_OV_limit;
+SIG_GROUP_ 2565854208 CHG1_LED_setting 1 : CHG1_LED_setting;
+SIG_GROUP_ 2565854208 CHG1_GPIO_setting 1 : CHG1_gpo_en CHG1_wake_up_ECU;
+SIG_GROUP_ 2565854208 CHG1_setpoint 1 : CHG1_EN CHG1_BAT_VOLT_LIMIT CHG1_IOUT_SET;
+SIG_GROUP_ 2149273612 BMS6_msg12 1 : BMS6_fast_i;
+SIG_GROUP_ 2149273612 BMS5_msg12 1 : BMS5_fast_i;
+SIG_GROUP_ 2149273612 BMS4_msg12 1 : BMS4_fast_i;
+SIG_GROUP_ 2149273612 BMS3_msg12 1 : BMS3_fast_i;
+SIG_GROUP_ 2149273612 BMS2_msg12 1 : BMS2_fast_i;
+SIG_GROUP_ 2149273612 BMS1_msg12 1 : BMS1_fast_i;
+SIG_GROUP_ 2149273611 BMS6_msg11 1 : BMS6_low_thermistor_id BMS6_high_cell_v_id BMS6_low_cell_v_id BMS6_high_intres_id BMS6_low_intres_id BMS6_high_opencell_id BMS6_unused_7;
+SIG_GROUP_ 2149273611 BMS5_msg11 1 : BMS5_low_thermistor_id BMS5_high_cell_v_id BMS5_low_cell_v_id BMS5_high_intres_id BMS5_low_intres_id BMS5_high_opencell_id BMS5_unused_7;
+SIG_GROUP_ 2149273611 BMS4_msg11 1 : BMS4_low_thermistor_id BMS4_high_cell_v_id BMS4_low_cell_v_id BMS4_high_intres_id BMS4_low_intres_id BMS4_high_opencell_id BMS4_unused_7;
+SIG_GROUP_ 2149273611 BMS3_msg11 1 : BMS3_low_thermistor_id BMS3_high_cell_v_id BMS3_low_cell_v_id BMS3_high_intres_id BMS3_low_intres_id BMS3_high_opencell_id BMS3_unused_7;
+SIG_GROUP_ 2149273611 BMS2_msg11 1 : BMS2_low_thermistor_id BMS2_high_cell_v_id BMS2_low_cell_v_id BMS2_high_intres_id BMS2_low_intres_id BMS2_high_opencell_id BMS2_unused_7;
+SIG_GROUP_ 2149273611 BMS1_msg11 1 : BMS1_low_thermistor_id BMS1_high_cell_v_id BMS1_low_cell_v_id BMS1_high_intres_id BMS1_low_intres_id BMS1_high_opencell_id BMS1_unused_7;
+SIG_GROUP_ 2149273610 BMS6_msg10 1 : BMS6_populated_cells BMS6_max_pack_v BMS6_min_pack_v BMS6_low_opencell_id BMS6_high_thermistor_id;
+SIG_GROUP_ 2149273610 BMS5_msg10 1 : BMS5_populated_cells BMS5_max_pack_v BMS5_min_pack_v BMS5_low_opencell_id BMS5_high_thermistor_id;
+SIG_GROUP_ 2149273610 BMS4_msg10 1 : BMS4_populated_cells BMS4_max_pack_v BMS4_min_pack_v BMS4_low_opencell_id BMS4_high_thermistor_id;
+SIG_GROUP_ 2149273610 BMS3_msg10 1 : BMS3_populated_cells BMS3_max_pack_v BMS3_min_pack_v BMS3_low_opencell_id BMS3_high_thermistor_id;
+SIG_GROUP_ 2149273610 BMS2_msg10 1 : BMS2_populated_cells BMS2_max_pack_v BMS2_min_pack_v BMS2_low_opencell_id BMS2_high_thermistor_id;
+SIG_GROUP_ 2149273610 BMS1_msg10 1 : BMS1_populated_cells BMS1_max_pack_v BMS1_min_pack_v BMS1_low_opencell_id BMS1_high_thermistor_id;
+SIG_GROUP_ 2149273609 BMS6_msg9 1 : BMS6_max_cell_number BMS6_isolation_threshold BMS6_voltage_failsafe_active BMS6_current_failsafe_active BMS6_relay_failsafe_active BMS6_cell_balancing_active BMS6_charge_interlock_active BMS6_thermistor_b_value_invalid BMS6_input_ps_failsafe_active BMS6_reserved_1 BMS6_reserved_2 BMS6_adaptive_amp_hour;
+SIG_GROUP_ 2149273609 BMS5_msg9 1 : BMS5_max_cell_number BMS5_isolation_threshold BMS5_voltage_failsafe_active BMS5_current_failsafe_active BMS5_relay_failsafe_active BMS5_cell_balancing_active BMS5_charge_interlock_active BMS5_thermistor_b_value_invalid BMS5_input_ps_failsafe_active BMS5_reserved_1 BMS5_reserved_2 BMS5_adaptive_amp_hour;
+SIG_GROUP_ 2149273609 BMS4_msg9 1 : BMS4_max_cell_number BMS4_isolation_threshold BMS4_voltage_failsafe_active BMS4_current_failsafe_active BMS4_relay_failsafe_active BMS4_cell_balancing_active BMS4_charge_interlock_active BMS4_thermistor_b_value_invalid BMS4_input_ps_failsafe_active BMS4_reserved_1 BMS4_reserved_2 BMS4_adaptive_amp_hour;
+SIG_GROUP_ 2149273609 BMS3_msg9 1 : BMS3_max_cell_number BMS3_isolation_threshold BMS3_voltage_failsafe_active BMS3_current_failsafe_active BMS3_relay_failsafe_active BMS3_cell_balancing_active BMS3_charge_interlock_active BMS3_thermistor_b_value_invalid BMS3_input_ps_failsafe_active BMS3_reserved_1 BMS3_reserved_2 BMS3_adaptive_amp_hour;
+SIG_GROUP_ 2149273609 BMS2_msg9 1 : BMS2_max_cell_number BMS2_isolation_threshold BMS2_voltage_failsafe_active BMS2_current_failsafe_active BMS2_relay_failsafe_active BMS2_cell_balancing_active BMS2_charge_interlock_active BMS2_thermistor_b_value_invalid BMS2_input_ps_failsafe_active BMS2_reserved_1 BMS2_reserved_2 BMS2_adaptive_amp_hour;
+SIG_GROUP_ 2149273609 BMS1_msg9 1 : BMS1_max_cell_number BMS1_isolation_threshold BMS1_voltage_failsafe_active BMS1_current_failsafe_active BMS1_relay_failsafe_active BMS1_cell_balancing_active BMS1_charge_interlock_active BMS1_thermistor_b_value_invalid BMS1_input_ps_failsafe_active BMS1_reserved_1 BMS1_reserved_2 BMS1_adaptive_amp_hour;
+SIG_GROUP_ 2149273608 BMS6_msg8 1 : BMS6_isolation_clipping BMS6_shortest_wave BMS6_isolation_adc BMS6_adaptive_soc;
+SIG_GROUP_ 2149273608 BMS5_msg8 1 : BMS5_isolation_clipping BMS5_shortest_wave BMS5_isolation_adc BMS5_adaptive_soc;
+SIG_GROUP_ 2149273608 BMS4_msg8 1 : BMS4_isolation_clipping BMS4_shortest_wave BMS4_isolation_adc BMS4_adaptive_soc;
+SIG_GROUP_ 2149273608 BMS3_msg8 1 : BMS3_isolation_clipping BMS3_shortest_wave BMS3_isolation_adc BMS3_adaptive_soc;
+SIG_GROUP_ 2149273608 BMS2_msg8 1 : BMS2_isolation_clipping BMS2_shortest_wave BMS2_isolation_adc BMS2_adaptive_soc;
+SIG_GROUP_ 2149273608 BMS1_msg8 1 : BMS1_isolation_clipping BMS1_shortest_wave BMS1_isolation_adc BMS1_adaptive_soc;
+SIG_GROUP_ 2149273607 BMS6_msg7 1 : BMS6_input_supply_v BMS6_low_open_cell_v BMS6_open_cell_v BMS6_high_temperature;
+SIG_GROUP_ 2149273607 BMS5_msg7 1 : BMS5_input_supply_v BMS5_low_open_cell_v BMS5_open_cell_v BMS5_high_temperature;
+SIG_GROUP_ 2149273607 BMS4_msg7 1 : BMS4_input_supply_v BMS4_low_open_cell_v BMS4_open_cell_v BMS4_high_temperature;
+SIG_GROUP_ 2149273607 BMS3_msg7 1 : BMS3_input_supply_v BMS3_low_open_cell_v BMS3_open_cell_v BMS3_high_temperature;
+SIG_GROUP_ 2149273607 BMS2_msg7 1 : BMS2_input_supply_v BMS2_low_open_cell_v BMS2_open_cell_v BMS2_high_temperature;
+SIG_GROUP_ 2149273607 BMS1_msg7 1 : BMS1_input_supply_v BMS1_low_open_cell_v BMS1_open_cell_v BMS1_high_temperature;
+SIG_GROUP_ 2149273606 BMS6_msg6 1 : BMS6_low_cell_resistance BMS6_low_temperature BMS6_high_cell_resistance BMS6_avg_cell_resistance;
+SIG_GROUP_ 2149273606 BMS5_msg6 1 : BMS5_low_cell_resistance BMS5_low_temperature BMS5_high_cell_resistance BMS5_avg_cell_resistance;
+SIG_GROUP_ 2149273606 BMS4_msg6 1 : BMS4_low_cell_resistance BMS4_low_temperature BMS4_high_cell_resistance BMS4_avg_cell_resistance;
+SIG_GROUP_ 2149273606 BMS3_msg6 1 : BMS3_low_cell_resistance BMS3_low_temperature BMS3_high_cell_resistance BMS3_avg_cell_resistance;
+SIG_GROUP_ 2149273606 BMS2_msg6 1 : BMS2_low_cell_resistance BMS2_low_temperature BMS2_high_cell_resistance BMS2_avg_cell_resistance;
+SIG_GROUP_ 2149273606 BMS1_msg6 1 : BMS1_low_cell_resistance BMS1_low_temperature BMS1_high_cell_resistance BMS1_avg_cell_resistance;
+SIG_GROUP_ 2149273605 BMS6_msg5 1 : BMS6_avg_cell_voltage BMS6_avg_temp BMS6_pack_open_voltage BMS6_pack_amp_hrs;
+SIG_GROUP_ 2149273605 BMS5_msg5 1 : BMS5_avg_cell_voltage BMS5_avg_temp BMS5_pack_open_voltage BMS5_pack_amp_hrs;
+SIG_GROUP_ 2149273605 BMS4_msg5 1 : BMS4_avg_cell_voltage BMS4_avg_temp BMS4_pack_open_voltage BMS4_pack_amp_hrs;
+SIG_GROUP_ 2149273605 BMS3_msg5 1 : BMS3_avg_cell_voltage BMS3_avg_temp BMS3_pack_open_voltage BMS3_pack_amp_hrs;
+SIG_GROUP_ 2149273605 BMS2_msg5 1 : BMS2_avg_cell_voltage BMS2_avg_temp BMS2_pack_open_voltage BMS2_pack_amp_hrs;
+SIG_GROUP_ 2149273605 BMS1_msg5 1 : BMS1_avg_cell_voltage BMS1_avg_temp BMS1_pack_open_voltage BMS1_pack_amp_hrs;
+SIG_GROUP_ 2149273604 BMS6_msg4 1 : BMS6_internal_temp BMS6_pack_ccl BMS6_pack_dcl BMS6_pack_resistance;
+SIG_GROUP_ 2149273604 BMS5_msg4 1 : BMS5_internal_temp BMS5_pack_ccl BMS5_pack_dcl BMS5_pack_resistance;
+SIG_GROUP_ 2149273604 BMS4_msg4 1 : BMS4_internal_temp BMS4_pack_ccl BMS4_pack_dcl BMS4_pack_resistance;
+SIG_GROUP_ 2149273604 BMS3_msg4 1 : BMS3_internal_temp BMS3_pack_ccl BMS3_pack_dcl BMS3_pack_resistance;
+SIG_GROUP_ 2149273604 BMS2_msg4 1 : BMS2_internal_temp BMS2_pack_ccl BMS2_pack_dcl BMS2_pack_resistance;
+SIG_GROUP_ 2149273604 BMS1_msg4 1 : BMS1_internal_temp BMS1_pack_ccl BMS1_pack_dcl BMS1_pack_resistance;
+SIG_GROUP_ 2149273603 BMS6_msg3 1 : BMS6_rolling_counter BMS6_high_cell_voltage BMS6_low_cell_voltage BMS6_relay_state;
+SIG_GROUP_ 2149273603 BMS5_msg3 1 : BMS5_rolling_counter BMS5_high_cell_voltage BMS5_low_cell_voltage BMS5_relay_state;
+SIG_GROUP_ 2149273603 BMS4_msg3 1 : BMS4_rolling_counter BMS4_high_cell_voltage BMS4_low_cell_voltage BMS4_relay_state;
+SIG_GROUP_ 2149273603 BMS3_msg3 1 : BMS3_rolling_counter BMS3_high_cell_voltage BMS3_low_cell_voltage BMS3_relay_state;
+SIG_GROUP_ 2149273603 BMS2_msg3 1 : BMS2_rolling_counter BMS2_high_cell_voltage BMS2_low_cell_voltage BMS2_relay_state;
+SIG_GROUP_ 2149273603 BMS1_msg3 1 : BMS1_rolling_counter BMS1_high_cell_voltage BMS1_low_cell_voltage BMS1_relay_state;
+SIG_GROUP_ 2149273602 BMS6_msg2 1 : BMS6_pack_current BMS6_pack_cycles BMS6_pack_inst_v BMS6_pack_soc;
+SIG_GROUP_ 2149273602 BMS5_msg2 1 : BMS5_pack_current BMS5_pack_cycles BMS5_pack_inst_v BMS5_pack_soc;
+SIG_GROUP_ 2149273602 BMS4_msg2 1 : BMS4_pack_soc BMS4_pack_inst_v BMS4_pack_cycles BMS4_pack_current;
+SIG_GROUP_ 2149273602 BMS3_msg2 1 : BMS3_pack_inst_v BMS3_pack_cycles BMS3_pack_current BMS3_pack_soc;
+SIG_GROUP_ 2149273602 BMS2_msg2 1 : BMS2_pack_inst_v BMS2_pack_cycles BMS2_pack_current BMS2_pack_soc;
+SIG_GROUP_ 2149273602 BMS1_msg2 1 : BMS1_pack_soc BMS1_pack_inst_v BMS1_pack_cycles BMS1_pack_current;
+SIG_GROUP_ 2149273601 BMS6_msg1 1 : BMS6_curr_lim_alt_mpi BMS6_curr_lim_chglatch BMS6_curr_lim_hpackv BMS6_curr_lim_hcv BMS6_curr_lim_ccl_temp BMS6_curr_lim_ccl_res BMS6_curr_lim_high_soc BMS6_curr_lim_commfailsafe BMS6_curr_lim_vfailsafe BMS6_curr_lim_lpackv BMS6_curr_lim_lcv BMS6_curr_lim_dcl_temp BMS6_curr_lim_dcl_res BMS6_curr_lim_low_soc BMS6_internal_logic_fault BMS6_int_heatsink_therm_fault BMS6_hv_isolation_fault BMS6_discharge_en_relay_fault BMS6_charge_en_relay_fault BMS6_weak_pack_fault BMS6_weak_cell_fault BMS6_thermistor_fault BMS6_low_cell_voltage_fault BMS6_fan_monitor_fault BMS6_current_sensor_fault BMS6_cell_open_wiring_fault BMS6_can_comm_fault BMS6_balancing_active BMS6_charger_safety BMS6_voltage_failsafe BMS6_current_failsafe BMS6_int_cell_fault BMS6_input_pwr_failsafe BMS6_charge_relay BMS6_discharge_relay BMS6_pack_health;
+SIG_GROUP_ 2149273601 BMS5_msg1 1 : BMS5_curr_lim_alt_mpi BMS5_curr_lim_chglatch BMS5_curr_lim_hpackv BMS5_curr_lim_hcv BMS5_curr_lim_ccl_temp BMS5_curr_lim_ccl_res BMS5_curr_lim_high_soc BMS5_curr_lim_commfailsafe BMS5_curr_lim_vfailsafe BMS5_curr_lim_lpackv BMS5_curr_lim_lcv BMS5_curr_lim_dcl_temp BMS5_curr_lim_dcl_res BMS5_curr_lim_low_soc BMS5_internal_logic_fault BMS5_int_heatsink_therm_fault BMS5_hv_isolation_fault BMS5_discharge_en_relay_fault BMS5_charge_en_relay_fault BMS5_weak_pack_fault BMS5_weak_cell_fault BMS5_thermistor_fault BMS5_low_cell_voltage_fault BMS5_fan_monitor_fault BMS5_current_sensor_fault BMS5_cell_open_wiring_fault BMS5_can_comm_fault BMS5_balancing_active BMS5_charger_safety BMS5_voltage_failsafe BMS5_current_failsafe BMS5_int_cell_fault BMS5_input_pwr_failsafe BMS5_charge_relay BMS5_discharge_relay BMS5_pack_health;
+SIG_GROUP_ 2149273601 BMS4_msg1 1 : BMS4_curr_lim_alt_mpi BMS4_curr_lim_chglatch BMS4_curr_lim_hpackv BMS4_curr_lim_hcv BMS4_curr_lim_ccl_temp BMS4_curr_lim_ccl_res BMS4_curr_lim_high_soc BMS4_curr_lim_commfailsafe BMS4_curr_lim_vfailsafe BMS4_curr_lim_lpackv BMS4_curr_lim_lcv BMS4_curr_lim_dcl_temp BMS4_curr_lim_dcl_res BMS4_curr_lim_low_soc BMS4_internal_logic_fault BMS4_int_heatsink_therm_fault BMS4_hv_isolation_fault BMS4_discharge_en_relay_fault BMS4_charge_en_relay_fault BMS4_weak_pack_fault BMS4_weak_cell_fault BMS4_thermistor_fault BMS4_low_cell_voltage_fault BMS4_fan_monitor_fault BMS4_current_sensor_fault BMS4_cell_open_wiring_fault BMS4_can_comm_fault BMS4_balancing_active BMS4_charger_safety BMS4_voltage_failsafe BMS4_current_failsafe BMS4_int_cell_fault BMS4_input_pwr_failsafe BMS4_charge_relay BMS4_discharge_relay BMS4_pack_health;
+SIG_GROUP_ 2149273601 BMS3_msg1 1 : BMS3_curr_lim_alt_mpi BMS3_curr_lim_chglatch BMS3_curr_lim_hpackv BMS3_curr_lim_hcv BMS3_curr_lim_ccl_temp BMS3_curr_lim_ccl_res BMS3_curr_lim_high_soc BMS3_curr_lim_commfailsafe BMS3_curr_lim_vfailsafe BMS3_curr_lim_lpackv BMS3_curr_lim_lcv BMS3_curr_lim_dcl_temp BMS3_curr_lim_dcl_res BMS3_curr_lim_low_soc BMS3_internal_logic_fault BMS3_int_heatsink_therm_fault BMS3_hv_isolation_fault BMS3_discharge_en_relay_fault BMS3_charge_en_relay_fault BMS3_weak_pack_fault BMS3_weak_cell_fault BMS3_thermistor_fault BMS3_low_cell_voltage_fault BMS3_fan_monitor_fault BMS3_current_sensor_fault BMS3_cell_open_wiring_fault BMS3_can_comm_fault BMS3_balancing_active BMS3_charger_safety BMS3_voltage_failsafe BMS3_current_failsafe BMS3_int_cell_fault BMS3_input_pwr_failsafe BMS3_charge_relay BMS3_discharge_relay BMS3_pack_health;
+SIG_GROUP_ 2149273601 BMS2_msg1 1 : BMS2_curr_lim_alt_mpi BMS2_curr_lim_chglatch BMS2_curr_lim_hpackv BMS2_curr_lim_hcv BMS2_curr_lim_ccl_temp BMS2_curr_lim_ccl_res BMS2_curr_lim_high_soc BMS2_curr_lim_commfailsafe BMS2_curr_lim_vfailsafe BMS2_curr_lim_lpackv BMS2_curr_lim_lcv BMS2_curr_lim_dcl_temp BMS2_curr_lim_dcl_res BMS2_curr_lim_low_soc BMS2_internal_logic_fault BMS2_int_heatsink_therm_fault BMS2_hv_isolation_fault BMS2_discharge_en_relay_fault BMS2_charge_en_relay_fault BMS2_weak_pack_fault BMS2_weak_cell_fault BMS2_thermistor_fault BMS2_low_cell_voltage_fault BMS2_fan_monitor_fault BMS2_current_sensor_fault BMS2_cell_open_wiring_fault BMS2_can_comm_fault BMS2_balancing_active BMS2_charger_safety BMS2_voltage_failsafe BMS2_current_failsafe BMS2_int_cell_fault BMS2_input_pwr_failsafe BMS2_charge_relay BMS2_discharge_relay BMS2_pack_health;
+SIG_GROUP_ 2149273601 BMS1_msg1 1 : BMS1_curr_lim_alt_mpi BMS1_curr_lim_chglatch BMS1_curr_lim_hpackv BMS1_curr_lim_hcv BMS1_curr_lim_ccl_temp BMS1_curr_lim_ccl_res BMS1_curr_lim_high_soc BMS1_curr_lim_commfailsafe BMS1_curr_lim_vfailsafe BMS1_curr_lim_lpackv BMS1_curr_lim_lcv BMS1_curr_lim_dcl_temp BMS1_curr_lim_dcl_res BMS1_curr_lim_low_soc BMS1_internal_logic_fault BMS1_int_heatsink_therm_fault BMS1_hv_isolation_fault BMS1_discharge_en_relay_fault BMS1_charge_en_relay_fault BMS1_weak_pack_fault BMS1_weak_cell_fault BMS1_thermistor_fault BMS1_low_cell_voltage_fault BMS1_fan_monitor_fault BMS1_current_sensor_fault BMS1_cell_open_wiring_fault BMS1_can_comm_fault BMS1_balancing_active BMS1_charger_safety BMS1_voltage_failsafe BMS1_current_failsafe BMS1_int_cell_fault BMS1_input_pwr_failsafe BMS1_charge_relay BMS1_discharge_relay BMS1_pack_health;
+SIG_GROUP_ 2684353280 IN_A11_ignition_switch 1 : sim_A11_output_state sim_A11_input_state sim_A11_current sim_A11_voltage;
+SIG_GROUP_ 2684353280 OUT_B13_hvil_power 1 : sim_B13_output_state sim_B13_input_state sim_B13_current sim_B13_voltage;
+SIG_GROUP_ 2684353280 IN_C11_locomotive_HV_switch 1 : sim_C11_output_state sim_C11_input_state sim_C11_current sim_C11_voltage;
+SIG_GROUP_ 2684353280 IN_E02_output_voltage_sensor 1 : sim_E02_output_state sim_E02_input_state sim_E02_current sim_E02_voltage;
+SIG_GROUP_ 2684353280 IN_E01_startco_pilot 1 : sim_E01_output_state sim_E01_input_state sim_E01_current sim_E01_voltage;
+SIG_GROUP_ 2684353280 IN_E09_charge_cable_plugged_in 1 : sim_E09_output_state sim_E09_input_state sim_E09_current sim_E09_voltage;
+SIG_GROUP_ 2684353280 IN_B16_start_charge_button 1 : sim_B16_output_state sim_B16_input_state sim_B16_current sim_B16_voltage;
+SIG_GROUP_ 2684353280 IN_A15_stop_charge_button 1 : sim_A15_output_state sim_A15_input_state sim_A15_current sim_A15_voltage;
+SIG_GROUP_ 2684353280 IN_A16_dash_estop_signal 1 : sim_A16_output_state sim_A16_input_state sim_A16_current sim_A16_voltage;
+SIG_GROUP_ 2684353280 IN_A17_pump_side_estop_signal 1 : sim_A17_output_state sim_A17_input_state sim_A17_current sim_A17_voltage;
+SIG_GROUP_ 2684353280 IN_A18_diagnostic_mode_switch 1 : sim_A18_output_state sim_A18_input_state sim_A18_current sim_A18_voltage;
+SIG_GROUP_ 2684353280 IN_E14_radiator_inlet_temp 1 : sim_E14_output_state sim_E14_input_state sim_E14_current sim_E14_voltage;
+SIG_GROUP_ 2684353280 IN_E15_reservoir_level_sensor 1 : sim_E15_output_state sim_E15_input_state sim_E15_current sim_E15_voltage;
+SIG_GROUP_ 2684353280 IN_E16_reservoir_temp_sensor 1 : sim_E16_output_state sim_E16_input_state sim_E16_current sim_E16_voltage;
+SIG_GROUP_ 2684353280 IN_B11_neg_contactor_fb_sp1 1 : sim_B11_output_state sim_B11_input_state sim_B11_current sim_B11_voltage;
+SIG_GROUP_ 2684353280 IN_B17_pos_contactor_fb_sp1 1 : sim_B17_output_state sim_B17_input_state sim_B17_current sim_B17_voltage;
+SIG_GROUP_ 2684353280 IN_C18_neg_contactor_fb_sp2 1 : sim_C18_output_state sim_C18_input_state sim_C18_current sim_C18_voltage;
+SIG_GROUP_ 2684353280 IN_D11_pos_contactor_fb_sp2 1 : sim_D11_output_state sim_D11_input_state sim_D11_current sim_D11_voltage;
+SIG_GROUP_ 2684353280 IN_B18_neg_contactor_fb_sp3 1 : sim_B18_output_state sim_B18_input_state sim_B18_current sim_B18_voltage;
+SIG_GROUP_ 2684353280 IN_C15_pos_contactor_fb_sp3 1 : sim_C15_output_state sim_C15_input_state sim_C15_current sim_C15_voltage;
+SIG_GROUP_ 2684353280 IN_D15_neg_contactor_fb_sp4 1 : sim_D15_output_state sim_D15_input_state sim_D15_current sim_D15_voltage;
+SIG_GROUP_ 2684353280 IN_D16_pos_contactor_fb_sp4 1 : sim_D16_output_state sim_D16_input_state sim_D16_current sim_D16_voltage;
+SIG_GROUP_ 2684353280 IN_C16_neg_contactor_fb_sp5 1 : sim_C16_output_state sim_C16_input_state sim_C16_current sim_C16_voltage;
+SIG_GROUP_ 2684353280 IN_C17_pos_contactor_fb_sp5 1 : sim_C17_output_state sim_C17_input_state sim_C17_current sim_C17_voltage;
+SIG_GROUP_ 2684353280 IN_D17_neg_contactor_fb_sp6 1 : sim_D17_output_state sim_D17_input_state sim_D17_current sim_D17_voltage;
+SIG_GROUP_ 2684353280 IN_D18_pos_contactor_fb_sp6 1 : sim_D18_output_state sim_D18_input_state sim_D18_current sim_D18_voltage;
+
+SG_MUL_VAL_ 2684353280 sim_A11_output_state sim_conn_A_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_A11_input_state sim_conn_A_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_A11_current sim_conn_A_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_A11_voltage sim_conn_A_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_B13_output_state sim_conn_B_pin 13-13;
+SG_MUL_VAL_ 2684353280 sim_B13_input_state sim_conn_B_pin 13-13;
+SG_MUL_VAL_ 2684353280 sim_B13_current sim_conn_B_pin 13-13;
+SG_MUL_VAL_ 2684353280 sim_B13_voltage sim_conn_B_pin 13-13;
+SG_MUL_VAL_ 2684353280 sim_C11_output_state sim_conn_C_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_C11_input_state sim_conn_C_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_C11_current sim_conn_C_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_C11_voltage sim_conn_C_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_E02_output_state sim_conn_E_pin 2-2;
+SG_MUL_VAL_ 2684353280 sim_E02_input_state sim_conn_E_pin 2-2;
+SG_MUL_VAL_ 2684353280 sim_E02_current sim_conn_E_pin 2-2;
+SG_MUL_VAL_ 2684353280 sim_E02_voltage sim_conn_E_pin 2-2;
+SG_MUL_VAL_ 2684353280 sim_E01_output_state sim_conn_E_pin 1-1;
+SG_MUL_VAL_ 2684353280 sim_E01_input_state sim_conn_E_pin 1-1;
+SG_MUL_VAL_ 2684353280 sim_E01_current sim_conn_E_pin 1-1;
+SG_MUL_VAL_ 2684353280 sim_E01_voltage sim_conn_E_pin 1-1;
+SG_MUL_VAL_ 2684353280 sim_E09_output_state sim_conn_E_pin 9-9;
+SG_MUL_VAL_ 2684353280 sim_E09_input_state sim_conn_E_pin 9-9;
+SG_MUL_VAL_ 2684353280 sim_E09_current sim_conn_E_pin 9-9;
+SG_MUL_VAL_ 2684353280 sim_E09_voltage sim_conn_E_pin 9-9;
+SG_MUL_VAL_ 2684353280 sim_B16_output_state sim_conn_B_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_B16_input_state sim_conn_B_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_B16_current sim_conn_B_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_B16_voltage sim_conn_B_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_A15_output_state sim_conn_A_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_A15_input_state sim_conn_A_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_A15_current sim_conn_A_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_A15_voltage sim_conn_A_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_A16_output_state sim_conn_A_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_A16_input_state sim_conn_A_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_A16_current sim_conn_A_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_A16_voltage sim_conn_A_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_A17_output_state sim_conn_A_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_A17_input_state sim_conn_A_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_A17_current sim_conn_A_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_A17_voltage sim_conn_A_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_A18_output_state sim_conn_A_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_A18_input_state sim_conn_A_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_A18_current sim_conn_A_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_A18_voltage sim_conn_A_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_E14_output_state sim_conn_E_pin 14-14;
+SG_MUL_VAL_ 2684353280 sim_E14_input_state sim_conn_E_pin 14-14;
+SG_MUL_VAL_ 2684353280 sim_E14_current sim_conn_E_pin 14-14;
+SG_MUL_VAL_ 2684353280 sim_E14_voltage sim_conn_E_pin 14-14;
+SG_MUL_VAL_ 2684353280 sim_E15_output_state sim_conn_E_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_E15_input_state sim_conn_E_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_E15_current sim_conn_E_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_E15_voltage sim_conn_E_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_E16_output_state sim_conn_E_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_E16_input_state sim_conn_E_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_E16_current sim_conn_E_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_E16_voltage sim_conn_E_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_B11_output_state sim_conn_B_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_B11_input_state sim_conn_B_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_B11_current sim_conn_B_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_B11_voltage sim_conn_B_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_B17_output_state sim_conn_B_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_B17_input_state sim_conn_B_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_B17_current sim_conn_B_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_B17_voltage sim_conn_B_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_C18_output_state sim_conn_C_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_C18_input_state sim_conn_C_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_C18_current sim_conn_C_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_C18_voltage sim_conn_C_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_D11_output_state sim_conn_D_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_D11_input_state sim_conn_D_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_D11_current sim_conn_D_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_D11_voltage sim_conn_D_pin 11-11;
+SG_MUL_VAL_ 2684353280 sim_B18_output_state sim_conn_B_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_B18_input_state sim_conn_B_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_B18_current sim_conn_B_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_B18_voltage sim_conn_B_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_C15_output_state sim_conn_C_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_C15_input_state sim_conn_C_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_C15_current sim_conn_C_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_C15_voltage sim_conn_C_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_D15_output_state sim_conn_D_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_D15_input_state sim_conn_D_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_D15_current sim_conn_D_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_D15_voltage sim_conn_D_pin 15-15;
+SG_MUL_VAL_ 2684353280 sim_D16_output_state sim_conn_D_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_D16_input_state sim_conn_D_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_D16_current sim_conn_D_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_D16_voltage sim_conn_D_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_C16_output_state sim_conn_C_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_C16_input_state sim_conn_C_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_C16_current sim_conn_C_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_C16_voltage sim_conn_C_pin 16-16;
+SG_MUL_VAL_ 2684353280 sim_C17_output_state sim_conn_C_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_C17_input_state sim_conn_C_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_C17_current sim_conn_C_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_C17_voltage sim_conn_C_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_D17_output_state sim_conn_D_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_D17_input_state sim_conn_D_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_D17_current sim_conn_D_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_D17_voltage sim_conn_D_pin 17-17;
+SG_MUL_VAL_ 2684353280 sim_D18_output_state sim_conn_D_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_D18_input_state sim_conn_D_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_D18_current sim_conn_D_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_D18_voltage sim_conn_D_pin 18-18;
+SG_MUL_VAL_ 2684353280 sim_conn_A_pin sim_conn_num 0-0;
+SG_MUL_VAL_ 2684353280 sim_conn_B_pin sim_conn_num 1-1;
+SG_MUL_VAL_ 2684353280 sim_conn_C_pin sim_conn_num 2-2;
+SG_MUL_VAL_ 2684353280 sim_conn_D_pin sim_conn_num 3-3;
+SG_MUL_VAL_ 2684353280 sim_conn_E_pin sim_conn_num 4-4;

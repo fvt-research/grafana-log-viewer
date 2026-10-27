@@ -18,6 +18,7 @@ server_vm_d65 = "http://victoriametrics.tail696b12.ts.net:8428"
 server_vm_sltms = "http://victoriametrics.tail696b12.ts.net:8429"
 server_vm_gh = "http://victoriametrics.tail696b12.ts.net:8430"
 server_vm_b3sr = "http://victoriametrics.tail696b12.ts.net:8431"
+server_vm_clayton = "http://victoriametrics.tail696b12.ts.net:8433"
 server_vm_localhost = "http://localhost:8428"
 
 vmapi_delete_series = "/api/v1/admin/tsdb/delete_series"

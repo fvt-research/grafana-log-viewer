@@ -294,6 +294,7 @@ def make_list_of_vm_json_line_format(
     timestamps_in_ms: list[datetime] | list[int],
     job: str,
     batch_size: int = 10_000,
+    extra_labels: dict[str, str] | None = None,
 ) -> tuple[list[str], list[int]]:
     """
     Create a list of JSON lines in the VictoriaMetrics format for batch uploading.
@@ -341,6 +342,8 @@ def make_list_of_vm_json_line_format(
                 for ts in timestamps_in_ms[start_idx:end_idx]
             ],
         }
+        if extra_labels:
+            json_line["metric"].update(extra_labels)
         return json.dumps(json_line), len(values[start_idx:end_idx])
 
     lines: list[str] = []

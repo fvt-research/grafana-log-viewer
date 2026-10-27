@@ -1,0 +1,10 @@
+apiVersion: 1
+
+datasources:
+  - name: VictoriaMetrics-Clayton
+    uid: victoriametrics-clayton
+    type: prometheus
+    access: proxy
+    url: http://127.0.0.1:8433
+    isDefault: false
+    editable: true

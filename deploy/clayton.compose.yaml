@@ -1,0 +1,41 @@
+services:
+  victoriametrics-clayton:
+    image: victoriametrics/victoria-metrics:latest
+    restart: unless-stopped
+    mem_limit: 1g
+    cpus: 1
+    command:
+      - -storageDataPath=/storage
+      - -retentionPeriod=10y
+      - -memory.allowedBytes=768MiB
+      - -storage.minFreeDiskSpaceBytes=10GB
+    ports:
+      - "127.0.0.1:8433:8428"
+      - "${CLAYTON_BIND_IP:-127.0.0.1}:8433:8428"
+    volumes:
+      - /home/ubuntu/victoriametrics/data/victoriametrics-clayton:/storage
+    networks:
+      - victoriametrics
+
+  mcp-clayton:
+    image: ghcr.io/victoriametrics/mcp-victoriametrics:latest
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.5
+    environment:
+      VM_INSTANCE_TYPE: single
+      MCP_SERVER_MODE: http
+      MCP_LISTEN_ADDR: ":8080"
+      VM_INSTANCE_ENTRYPOINT: http://victoriametrics-clayton:8428
+    ports:
+      - "127.0.0.1:9433:8080"
+      - "${CLAYTON_BIND_IP:-127.0.0.1}:9433:8080"
+    depends_on:
+      - victoriametrics-clayton
+    networks:
+      - victoriametrics
+
+networks:
+  victoriametrics:
+    external: true
+    name: victoriametrics_default

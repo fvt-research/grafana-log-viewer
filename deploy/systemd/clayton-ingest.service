@@ -1,0 +1,19 @@
+[Unit]
+Description=Clayton battery ingest from S3 to VictoriaMetrics
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/ingest/clayton-current
+EnvironmentFile=-/etc/ingest/ingest.env
+ExecStart=/home/ubuntu/ingest/clayton-current/deploy/bin/run_clayton_ingest.sh
+ExecStopPost=-/usr/bin/docker stop -t 30 clayton-ingest
+TimeoutStartSec=infinity
+TimeoutStopSec=45
+StandardOutput=append:/home/ubuntu/ingest/logs/clayton.log
+StandardError=append:/home/ubuntu/ingest/logs/clayton.log
+Nice=10
+
+[Install]
+WantedBy=default.target

@@ -29,6 +29,7 @@ decoder/sending.py \
 decoder/livelogger \
 decoder/D65 \
 decoder/B3SR \
+decoder/Clayton \
 deploy \
 requirements.txt
 
@@ -46,11 +47,15 @@ ssh "$REMOTE_HOST" "
   docker tag ingest-runner:$RELEASE_ID ingest-runner:current
   ln -sfn '$REMOTE_RELEASE' '$REMOTE_BASE/current'
   chmod +x '$REMOTE_BASE/current/deploy/bin/'*.sh '$REMOTE_BASE/current/deploy/bin/'*.py
-  cp '$REMOTE_BASE/current/deploy/systemd/'*.service \"\$HOME/.config/systemd/user/\"
-  cp '$REMOTE_BASE/current/deploy/systemd/'*.timer \"\$HOME/.config/systemd/user/\"
+  cp '$REMOTE_BASE/current/deploy/systemd/'{d65,b3sr}-ingest.service \"\$HOME/.config/systemd/user/\"
+  cp '$REMOTE_BASE/current/deploy/systemd/'{d65,b3sr}-ingest.timer \"\$HOME/.config/systemd/user/\"
   systemctl --user daemon-reload
   systemctl --user enable --now d65-ingest.timer b3sr-ingest.timer
   systemctl --user restart d65-ingest.service b3sr-ingest.service
 "
 
 echo "Deployed release $RELEASE_ID to $REMOTE_HOST:$REMOTE_RELEASE"
+
+if [[ "${ENABLE_CLAYTON:-0}" == 1 ]]; then
+  "$REPO_ROOT/scripts/deploy_clayton.sh"
+fi

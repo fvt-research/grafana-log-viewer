@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "victoriametrics-clayton": {
+      "type": "http",
+      "url": "http://100.87.35.92:9433/mcp",
+      "tools": ["*"]
+    }
+  }
+}

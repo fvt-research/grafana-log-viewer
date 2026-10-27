@@ -328,6 +328,8 @@ def send_signal_using_json_lines(
     skip_signal_range_check: bool = False,
     job_watermark: datetime | None = None,
     batch_size: int = 10_000,
+    raise_on_error: bool = False,
+    extra_labels: dict[str, str] | None = None,
 ) -> int:
     """
     Send a single signal to VictoriaMetrics using JSON lines.
@@ -392,6 +394,7 @@ def send_signal_using_json_lines(
         timestamps_in_ms=timestamps,
         job=job if job else "",
         batch_size=batch_size,
+        extra_labels=extra_labels,
     )
 
     start = time.time()
@@ -423,6 +426,11 @@ def send_signal_using_json_lines(
 
         except Exception as e:
             logger.error(f"‼️ {metric_name}: Error sending batch: {e}")
+
+    if raise_on_error and send_signal and num_of_samples_sent != len(values):
+        raise RuntimeError(
+            f"{metric_name}: imported {num_of_samples_sent}/{len(values)} samples"
+        )
 
     if num_of_samples_sent == 0:
         logger.warning(f"  ⚠️ {metric_name}: No samples sent.")
