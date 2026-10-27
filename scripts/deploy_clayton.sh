@@ -38,10 +38,9 @@ release_id="$2"
 bind_ip="$3"
 base=/home/ubuntu/ingest
 provisioning=/home/ubuntu/victoriametrics/provisioning/datasources
-mkdir -p "$base/cursor" "$base/logs" "$HOME/.config/systemd/user" \
-  /home/ubuntu/victoriametrics/data/victoriametrics-clayton
+mkdir -p "$base/cursor" "$base/logs" "$HOME/.config/systemd/user"
 docker network inspect victoriametrics_default >/dev/null
-test -d "$provisioning" && test -w "$provisioning"
+test -d "$provisioning"
 printf 'CLAYTON_BIND_IP=%s\n' "$bind_ip" > "$release/deploy/clayton.compose.env"
 compose=(docker compose --project-name clayton
   --env-file "$release/deploy/clayton.compose.env"
@@ -64,7 +63,8 @@ curl --fail --silent --show-error --connect-timeout 5 --max-time 30 --retry 12 -
 docker tag "ingest-runner:clayton-$release_id" ingest-runner:clayton
 ln -sfn "$release" "$base/clayton-current"
 chmod +x "$release/deploy/bin/run_clayton_ingest.sh"
-cp "$release/deploy/clayton-datasource.yaml" "$provisioning/clayton.yaml"
+docker cp "$release/deploy/clayton-datasource.yaml" \
+  grafana:/etc/grafana/provisioning/datasources/clayton.yaml
 cp "$release/deploy/systemd/clayton-ingest."{service,timer} "$HOME/.config/systemd/user/"
 systemctl --user daemon-reload
 systemctl --user enable --now clayton-ingest.timer
