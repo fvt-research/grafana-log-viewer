@@ -5,6 +5,7 @@ import json
 import logging
 import sqlite3
 import tempfile
+from contextlib import closing
 from pathlib import Path
 
 from asammdf import MDF
@@ -98,7 +99,9 @@ def ingest(
                     response = s3.get_object(
                         Bucket=BUCKET, Key=key, IfMatch=obj["ETag"]
                     )
-                    with response["Body"] as body, local.open("wb") as target:
+                    with closing(response["Body"]) as body, local.open(
+                        "wb"
+                    ) as target:
                         for chunk in body.iter_chunks(chunk_size=1024 * 1024):
                             target.write(chunk)
                     count = decode_file(local, job, server, dbc_folder)

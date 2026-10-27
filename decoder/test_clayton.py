@@ -7,15 +7,10 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 from asammdf import Signal
+from botocore.response import StreamingBody
 
 from decoder.Clayton.send_clayton import decode_file, ingest
 from decoder.sending import send_signal_using_json_lines
-
-
-class Body(io.BytesIO):
-    def iter_chunks(self, chunk_size):
-        while chunk := self.read(chunk_size):
-            yield chunk
 
 
 class ClaytonTest(unittest.TestCase):
@@ -71,7 +66,9 @@ class ClaytonTest(unittest.TestCase):
         s3.get_paginator.return_value.paginate.return_value = [
             {"Contents": [obj]}
         ]
-        s3.get_object.side_effect = lambda **_: {"Body": Body(b"raw")}
+        s3.get_object.side_effect = lambda **_: {
+            "Body": StreamingBody(io.BytesIO(b"raw"), 3)
+        }
         with sqlite3.connect(":memory:") as state, patch(
             "decoder.Clayton.send_clayton.decode_file", return_value=42
         ) as decode:
@@ -107,7 +104,9 @@ class ClaytonTest(unittest.TestCase):
                 ]
             }
         ]
-        s3.get_object.side_effect = lambda **_: {"Body": Body(b"raw")}
+        s3.get_object.side_effect = lambda **_: {
+            "Body": StreamingBody(io.BytesIO(b"raw"), 3)
+        }
         with sqlite3.connect(":memory:") as state, patch(
             "decoder.Clayton.send_clayton.decode_file",
             side_effect=[RuntimeError("HTTP failure"), 23, 24, 42],
