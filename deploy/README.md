@@ -115,7 +115,8 @@ If deployment fails after stopping Clayton, follow rollback below.
 
 The script copies **only** `deploy/clayton-datasource.yaml` to the existing
 Grafana provisioning directory as `clayton.yaml`. Existing datasource files
-remain untouched. Activate it without restarting Grafana, on the host:
+remain untouched. Deployment reloads datasource/dashboard provisioning
+automatically. To reload just datasources manually on the host:
 
 ```bash
 # Grafana server-admin credentials required; curl prompts for password.
@@ -198,3 +199,54 @@ delete storage. These commands roll back decoder/dependency releases, not VM/MCP
 images tagged `latest`; record deployed image digests before deliberate upgrades.
 If no prior release exists, stop/disable only `clayton-ingest.timer`, stop its
 service and run the current Clayton Compose project `stop`; retain data.
+
+### Clayton dashboard
+
+The **Clayton** folder contains **Locomotive batteries diagnostics dashboard**
+at `/d/clayton-batteries`. Its 47 panels retain the cloud dashboard layout,
+thresholds, value mappings and legends, using the Clayton VM datasource.
+Cloud library panels are embedded so no cloud Grafana connection is required.
+External logo images retain their original public asset URLs.
+
+Deploy dashboard updates without interrupting ingestion or restarting Grafana:
+
+```bash
+./scripts/deploy_clayton_dashboard.sh
+```
+
+The script copies only Clayton provisioning files, reloads dashboard providers
+using the existing Grafana container admin credentials without printing them,
+and verifies the provisioned dashboard. Normal Clayton deployment also invokes
+this script. Existing dashboards are not replaced.
+
+The battery selector uses VM jobs `LB101` through `LB105`; default `LB103` has
+recent recordings. For offline batteries, use their recording dates in the time
+picker. The five last-seen cards use actual sample timestamps over 90 days,
+independent of the dashboard time range. Missing recordings stay empty.
+
+The deleted cloud PLC-status library panel was rebuilt from recorded CAN2 PLC
+status bits. The cloud alert list is an explicit notice: no source alert rules
+were available, and recorded fault panels are not live alert evaluations.
+Runtime/distance graphs show reset-aware cumulative increases since the first
+displayed interval. Rollups use trailing display intervals in MetricsQL rather
+than Flux's window-end timestamps.
+Runtime labels distinguish PLC and screen counters. SOC and charger-current
+graphs select pack SOC and measured current, excluding similarly named status
+bits and setpoints now present in the full raw decode. Active fault panels use
+point plots: Grafana's status-history panel errors on empty Prometheus frames.
+Empty fault plots mean no matching active samples, not proof of no faults.
+
+Migration/check commands (cloud exports remain outside git under `data/`):
+
+```bash
+python -m scripts.migrate_clayton_dashboard data/clayton-dashboards \
+  provisioning/dashboards/clayton/locomotive-batteries.json
+python -m scripts.test_migrate_clayton_dashboard \
+  --server http://100.87.35.92:8433
+```
+
+The export directory needs `source.json` from the cloud dashboard API and
+`library-<uid>.json` from its library-element API. The migration is specific to
+that dashboard, not a general Flux converter. The check executes each target
+for all five batteries at their latest recorded times, distinguishing absent
+recordings and inactive faults from query failures.

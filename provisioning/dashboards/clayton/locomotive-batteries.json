@@ -1,0 +1,4673 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Migrated from cloud locomotive battery diagnostics. All recorded signals use VictoriaMetrics. Backfill is ongoing; offline batteries require their recording dates in the time picker. PLC status was rebuilt; cloud alert rules were unavailable.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "service"
+      ],
+      "targetBlank": false,
+      "title": "Service",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "Locomotive"
+      ],
+      "targetBlank": false,
+      "title": "Public",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "alerts"
+      ],
+      "targetBlank": false,
+      "title": "Alerts",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": true,
+  "panels": [
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 99,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<img src=\"https://fvt-assets.s3.ca-central-1.amazonaws.com/epiroc-logo-yellow.png\" alt=\"Epiroc Logo\">\n           ",
+        "mode": "html"
+      },
+      "pluginVersion": "11.6.0-82840",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "description": "",
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 4,
+        "y": 0
+      },
+      "id": 101,
+      "options": {
+        "content": "<img src=\"https://fvt-assets.s3.ca-central-1.amazonaws.com/LocoBatteries_transparent.png\" alt=\"Loco Batteries\">",
+        "mode": "html"
+      },
+      "pluginVersion": "8.2.2-39068",
+      "transparent": true,
+      "type": "text",
+      "title": ""
+    },
+    {
+      "description": "",
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 7,
+        "y": 0
+      },
+      "id": 103,
+      "options": {
+        "mode": "markdown",
+        "content": "**Cloud alert rules are not migrated.** No rules were available from the source account. Status panels below show recorded faults, not live alert evaluations."
+      },
+      "pluginVersion": "8.2.2-39068",
+      "title": "Alert dashboard",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 120,
+      "title": "All locos",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        }
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 7
+      },
+      "id": 39,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "tlast_over_time({job=\"LB101\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[90d]) * 1000",
+          "instant": true,
+          "range": false,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "68battery011 last seen",
+      "type": "stat",
+      "description": "Last recorded CAN sample in the previous 90 days; independent of the selected dashboard time range."
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        }
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 4,
+        "y": 7
+      },
+      "id": 38,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "tlast_over_time({job=\"LB102\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[90d]) * 1000",
+          "instant": true,
+          "range": false,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "68battery012 last seen",
+      "type": "stat",
+      "description": "Last recorded CAN sample in the previous 90 days; independent of the selected dashboard time range."
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        }
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 8,
+        "y": 7
+      },
+      "id": 40,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "tlast_over_time({job=\"LB103\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[90d]) * 1000",
+          "instant": true,
+          "range": false,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "68battery013 last seen",
+      "type": "stat",
+      "description": "Last recorded CAN sample in the previous 90 days; independent of the selected dashboard time range."
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        }
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 12,
+        "y": 7
+      },
+      "id": 41,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "tlast_over_time({job=\"LB104\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[90d]) * 1000",
+          "instant": true,
+          "range": false,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "68battery014 last seen",
+      "type": "stat",
+      "description": "Last recorded CAN sample in the previous 90 days; independent of the selected dashboard time range."
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeAsIso"
+        }
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 16,
+        "y": 7
+      },
+      "id": 42,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "tlast_over_time({job=\"LB105\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[90d]) * 1000",
+          "instant": true,
+          "range": false,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "68battery015 last seen",
+      "type": "stat",
+      "description": "Last recorded CAN sample in the previous 90 days; independent of the selected dashboard time range."
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery011"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery011"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery012"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery012"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery013"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery013"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery014"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery014"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery015"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery015"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 44,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"LB101\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_soc)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery011",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB102\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_soc)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery012",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB103\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_soc)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery013",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB104\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_soc)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery014",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB105\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_soc)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery015",
+          "hide": false
+        }
+      ],
+      "title": "State of charge for all batteries",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery011"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery011"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery012"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery012"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery013"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery013"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery014"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery014"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "68battery015"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "68battery015"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 45,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.2.2-39068",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB101\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_2_charger_coolant_level)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery011",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB102\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_2_charger_coolant_level)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery012",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB103\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_2_charger_coolant_level)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery013",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB104\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_2_charger_coolant_level)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery014",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"LB105\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_2_charger_coolant_level)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "68battery015",
+          "hide": false
+        }
+      ],
+      "title": "Coolant level for all batteries",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      },
+      "id": 121,
+      "title": "${Battery} At a glance",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "super-light-green",
+                  "index": 0,
+                  "text": "Zero energy"
+                },
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Master closed no HV"
+                },
+                "10": {
+                  "color": "red",
+                  "index": 10,
+                  "text": "Critical failure. Turning off"
+                },
+                "11": {
+                  "color": "red",
+                  "index": 11,
+                  "text": "Critical failure. HV ON"
+                },
+                "12": {
+                  "color": "red",
+                  "index": 12,
+                  "text": "Emergency stop"
+                },
+                "13": {
+                  "color": "blue",
+                  "index": 13,
+                  "text": "Shutting down"
+                },
+                "2": {
+                  "color": "super-light-green",
+                  "index": 2,
+                  "text": "Startup"
+                },
+                "3": {
+                  "color": "dark-orange",
+                  "index": 3,
+                  "text": "Charging"
+                },
+                "4": {
+                  "color": "super-light-orange",
+                  "index": 4,
+                  "text": "Post-charge idle"
+                },
+                "5": {
+                  "color": "red",
+                  "index": 5,
+                  "text": "Brake test mode"
+                },
+                "6": {
+                  "color": "purple",
+                  "index": 6,
+                  "text": "Diagnostic mode"
+                },
+                "7": {
+                  "color": "green",
+                  "index": 7,
+                  "text": "Ready to drive"
+                },
+                "8": {
+                  "color": "red",
+                  "index": 8,
+                  "text": "Tow mode"
+                },
+                "9": {
+                  "color": "red",
+                  "index": 9,
+                  "text": "Dead battery"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 0,
+        "y": 26
+      },
+      "id": 8,
+      "maxDataPoints": 500,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
+      },
+      "pluginVersion": "8.2.3-40566",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Current state",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Initializing"
+                },
+                "1": {
+                  "color": "blue",
+                  "index": 1,
+                  "text": "Idle"
+                },
+                "10": {
+                  "color": "red",
+                  "index": 10,
+                  "text": "Overvoltage protection"
+                },
+                "11": {
+                  "color": "purple",
+                  "index": 11,
+                  "text": "Firmware update"
+                },
+                "2": {
+                  "color": "orange",
+                  "index": 2,
+                  "text": "Startup"
+                },
+                "3": {
+                  "color": "orange",
+                  "index": 3,
+                  "text": "Precheck"
+                },
+                "4": {
+                  "color": "green",
+                  "index": 4,
+                  "text": "Running"
+                },
+                "5": {
+                  "color": "red",
+                  "index": 5,
+                  "text": "Temporary fault"
+                },
+                "6": {
+                  "color": "red",
+                  "index": 6,
+                  "text": "Overtemperature protection"
+                },
+                "7": {
+                  "color": "red",
+                  "index": 7,
+                  "text": "Latched fault"
+                },
+                "8": {
+                  "color": "red",
+                  "index": 8,
+                  "text": "Resettable fault"
+                },
+                "9": {
+                  "color": "red",
+                  "index": 9,
+                  "text": "Undervoltage protection"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 10,
+        "y": 26
+      },
+      "id": 4,
+      "maxDataPoints": 500,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "limit": 8,
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3-40566",
+      "repeat": null,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:^CHG[1-4].*_state.*)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "${Battery} Charger state",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*CHG)([1-4])(.*_status_charger_)(.*)",
+            "renamePattern": "Charger $2"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "%"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 19,
+        "y": 26
+      },
+      "id": 2,
+      "maxDataPoints": 500,
+      "options": {
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3-40566",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_2_charger_coolant_level)$).*\"}[${__range_s}s]) keep_metric_names",
+          "instant": true,
+          "range": false,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Coolant",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "(.*soc.*)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 25
+                    },
+                    {
+                      "color": "green",
+                      "value": 50
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "State of charge"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "(.*_v.*)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "volt"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 330
+                    },
+                    {
+                      "color": "green",
+                      "value": 357
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Pack Voltage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "(.*pack_cycles.*)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Pack cycles"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 10,
+        "x": 0,
+        "y": 30
+      },
+      "id": 18,
+      "maxDataPoints": 500,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3-40566",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:(?:^clayton_1_.*)).*\",__name__!=\"clayton_1_battery_pack_i\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Battery info",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PLC_00_runtime"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "PLC runtime"
+              },
+              {
+                "id": "unit",
+                "value": "h"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PLC_00_distance"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "PLC distance"
+              },
+              {
+                "id": "unit",
+                "value": "lengthkm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Screen_2_SCR_loco_runtime_hrs"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Screen runtime"
+              },
+              {
+                "id": "unit",
+                "value": "h"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Screen_2_SCR_loco_distance_km"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Screen distance"
+              },
+              {
+                "id": "unit",
+                "value": "lengthkm"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 10,
+        "y": 30
+      },
+      "id": 26,
+      "maxDataPoints": 500,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3-40566",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:(?:^.*runtime.*)|(?:^.*distance.*)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Runtime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "max": 32,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 24
+              },
+              {
+                "color": "green",
+                "value": 26.3
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 19,
+        "y": 30
+      },
+      "id": 12,
+      "maxDataPoints": 500,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
+      },
+      "pluginVersion": "8.2.3-40566",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:^(?:CHG1_LV_BATT)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} 24V Battery",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 122,
+      "title": "${Battery} Graphs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "distance"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "lengthkm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "runtime"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "h"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 112,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "WITH (delta = running_sum(label_copy(increase({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:(?:PLC_00_.*)).*\"}[$__interval]) keep_metric_names, \"__name__\", \"signal\"))) (delta - range_first(delta)) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{signal}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Runtime",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "PLC_00_(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries",
+      "description": "Reset-aware runtime/distance increase since the first displayed interval in the selected time range."
+    },
+    {
+      "type": "status-history",
+      "title": "${Battery} PLC status",
+      "description": "Rebuilt from CAN2 PLC status bits: the source cloud library panel was deleted.",
+      "maxDataPoints": 100,
+      "options": {
+        "showValue": "never",
+        "rowHeight": 0.9,
+        "legend": {
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bool_on_off",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:(?:PLC_(10|15)_.*)).*\",__name__!~\".*(?:.*(unused|direction_inbyte|direction_outbyte).*).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A"
+        }
+      ],
+      "id": 115,
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      }
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 101,
+          "min": -1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 20
+              },
+              {
+                "color": "green",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 53
+      },
+      "id": 16,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "8.2.1-37459",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_soc)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Usable_SOC",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:^BMS[1-6]_pack_soc$)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "BMS_SOC",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} State of charge",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(clayton_1_)(.*)",
+            "renamePattern": "Usable SOC"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(BMS[1-6])(_.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "max": 90,
+          "min": -20,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "clayton_3_bms_temp"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "max BMS"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "clayton_3_batt_high_temp"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Highest cell"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "clayton_3_batt_low_temp"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Lowest cell"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "clayton_3_batt_avg_temp"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Average cell"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 60
+      },
+      "id": 32,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=~\"CAN1|CAN2\",__name__=~\".*(?:(?:clayton_3.*temp.*)|(?:CHG.*TEMP.*)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Temps",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Temperatures",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CHG(\\d)_.*CHASSIS.*",
+            "renamePattern": "Charger $1 chassis"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CHG(\\d)_.*AMB.*",
+            "renamePattern": "Charger $1 ambient"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "max": 16,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "amp"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Fan"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Fan"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 10
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Pump"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Pump"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 3
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 68
+      },
+      "id": 105,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "sum by (job) (avg_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:^(?:PDM133_DO11_current_A|PDM133_DO12_current_A)$).*\"}[$__interval]) keep_metric_names)",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Fan",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:^(?:PDM133_DO10_current_A)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Pump",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Cooling system currents",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds",
+            "seriesBy": "max"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "displayName": "Total current",
+          "min": -300,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": -150
+              },
+              {
+                "color": "super-light-green",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 300
+              },
+              {
+                "color": "super-light-red",
+                "value": 700
+              },
+              {
+                "color": "light-red",
+                "value": 750
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 900
+              }
+            ]
+          },
+          "unit": "amp"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 74
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:^(?:clayton_1_battery_pack_i)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Total current",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Total current",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "displayName": "Current state",
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "super-light-green",
+                  "index": 0,
+                  "text": "Zero energy"
+                },
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Master closed no HV"
+                },
+                "10": {
+                  "color": "red",
+                  "index": 10,
+                  "text": "Critical failure. Turning off"
+                },
+                "11": {
+                  "color": "red",
+                  "index": 11,
+                  "text": "Critical failure. HV ON"
+                },
+                "12": {
+                  "color": "red",
+                  "index": 12,
+                  "text": "Emergency stop"
+                },
+                "13": {
+                  "color": "blue",
+                  "index": 13,
+                  "text": "Shutting down"
+                },
+                "2": {
+                  "color": "super-light-green",
+                  "index": 2,
+                  "text": "Startup"
+                },
+                "3": {
+                  "color": "dark-orange",
+                  "index": 3,
+                  "text": "Charging"
+                },
+                "4": {
+                  "color": "super-light-orange",
+                  "index": 4,
+                  "text": "Post-charge idle"
+                },
+                "5": {
+                  "color": "red",
+                  "index": 5,
+                  "text": "Brake test mode"
+                },
+                "6": {
+                  "color": "purple",
+                  "index": 6,
+                  "text": "Diagnostic mode"
+                },
+                "7": {
+                  "color": "green",
+                  "index": 7,
+                  "text": "Ready to drive"
+                },
+                "8": {
+                  "color": "red",
+                  "index": 8,
+                  "text": "Tow mode"
+                },
+                "9": {
+                  "color": "red",
+                  "index": 9,
+                  "text": "Dead battery"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 13.1,
+          "min": -0.1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "string"
+        }
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 82
+      },
+      "id": 48,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_1_current_state)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Current state",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 95
+      },
+      "id": 123,
+      "title": "${Battery} Chargers",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Initializing"
+                },
+                "1": {
+                  "color": "blue",
+                  "index": 1,
+                  "text": "Idle"
+                },
+                "10": {
+                  "color": "red",
+                  "index": 10,
+                  "text": "Overvoltage protection"
+                },
+                "11": {
+                  "color": "purple",
+                  "index": 11,
+                  "text": "Firmware update"
+                },
+                "2": {
+                  "color": "orange",
+                  "index": 2,
+                  "text": "Startup"
+                },
+                "3": {
+                  "color": "orange",
+                  "index": 3,
+                  "text": "Precheck"
+                },
+                "4": {
+                  "color": "green",
+                  "index": 4,
+                  "text": "Running"
+                },
+                "5": {
+                  "color": "red",
+                  "index": 5,
+                  "text": "Temporary fault"
+                },
+                "6": {
+                  "color": "red",
+                  "index": 6,
+                  "text": "Overtemperature protection"
+                },
+                "7": {
+                  "color": "red",
+                  "index": 7,
+                  "text": "Latched fault"
+                },
+                "8": {
+                  "color": "red",
+                  "index": 8,
+                  "text": "Resettable fault"
+                },
+                "9": {
+                  "color": "red",
+                  "index": 9,
+                  "text": "Undervoltage protection"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 11.1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "string"
+        }
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 96
+      },
+      "id": 60,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "quantile_over_time(0.5, {job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:^CHG[1-4].*_state.*)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Charger state",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*CHG)([1-4])(.*_status_charger_)(.*)",
+            "renamePattern": "Charger $2"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "max": 40,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": -100
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "amp"
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 108
+      },
+      "id": 107,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "quantile_over_time(0.5, {job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:^CHG[1-4]_IOUT$)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Charger current",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CHG([1-4])_IOUT",
+            "renamePattern": "Charger $1"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 114
+      },
+      "id": 124,
+      "title": "${Battery} BMSs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 4,
+          "max": 4.2,
+          "min": 3,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "volt"
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 115
+      },
+      "id": 88,
+      "maxDataPoints": 500,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:BMS[1-6].*)).*\",__name__=~\".*(?:cell_voltage).*\",__name__!~\".*(?:.*fault.*).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Cell voltages",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(BMS[1-6])_(.*)_cell.*",
+            "renamePattern": "$1 $2"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "max": 80,
+          "min": -10,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 122
+      },
+      "id": 87,
+      "interval": "100ms",
+      "maxDataPoints": 1000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:BMS[1-6].*)).*\",__name__=~\".*(?:internal_temp).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Internal temp",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(BMS[1-6]).*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": 600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "max": 80,
+          "min": -20,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 130
+      },
+      "id": 111,
+      "interval": "100ms",
+      "maxDataPoints": 1000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:BMS[1-6].*)).*\",__name__=~\".*(?:low_temperature).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:BMS[1-6].*)).*\",__name__=~\".*(?:high_temperature).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "B",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} cell temperatures",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(BMS[1-6])_(low|high).*",
+            "renamePattern": "$1 $2est"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool"
+        }
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 138
+      },
+      "id": 119,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.5,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({job=\"${Battery}\",bus=~\"CAN1|CAN2\",__name__=~\".*(?:(?:^.*int_cell_fault.*)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Service errors",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} internal cell communication fault",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(BMS[1-6])_.*",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 147
+      },
+      "id": 125,
+      "title": "${Battery} Screen messages",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 0,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0,
+            "drawStyle": "line",
+            "showPoints": "always",
+            "pointSize": 6
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-orange",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Service errors"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 148
+      },
+      "id": 36,
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "(max_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:^errors_[1-2].*)).*\"}[$__interval]) keep_metric_names) == 1",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Service errors",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "(max_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:^warning_[1-2].*)).*\"}[$__interval]) keep_metric_names) == 1",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Service warnings",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Service screen messages",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "errors_[1-2]_|warning_[1-2]_(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries",
+      "description": "Recorded active fault samples only. No data means no matching active samples in this time range, not proof that all faults are clear."
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 0,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 0,
+            "drawStyle": "line",
+            "showPoints": "always",
+            "pointSize": 6
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-orange",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Loco errors"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 157
+      },
+      "id": 37,
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "(max_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:(?:clayton_2_(hvil_loop_broken|ovp|uvp|ocp|ucp|hv_iso_fault|contactor_failure|battery_overtemp|subpack_sync|failure|battery_under_temp|bms_error|critical_fault|current_imbal_error).*)).*\"}[$__interval]) keep_metric_names) == 1",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Loco errors",
+          "hide": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "(max_over_time({job=\"${Battery}\",bus=\"CAN2\",__name__=~\".*(?:(?:clayton_2_(warm_batt_temp|batt_too_cold|estop_pushed|cell_delta_problem|warning|coolant_low|limp_mode).*)).*\"}[$__interval]) keep_metric_names) == 1",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "Loco warnings",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Locomotive screen messages",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "clayton_2_(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries",
+      "description": "Recorded active fault samples only. No data means no matching active samples in this time range, not proof that all faults are clear."
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 166
+      },
+      "id": 126,
+      "title": "Status variables",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 167
+      },
+      "id": 74,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:debug_.*sp.*)).*\",__name__=~\".*(?:sp1).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Subpack 1 status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug).*(sp[1-6])_(.*)",
+            "renamePattern": "$3"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 172
+      },
+      "id": 75,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:debug_.*sp.*)).*\",__name__=~\".*(?:sp2).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Subpack 2 status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug).*(sp[1-6])_(.*)",
+            "renamePattern": "$3"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 177
+      },
+      "id": 71,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:debug_.*sp.*)).*\",__name__=~\".*(?:sp3).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Subpack 3 status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug).*(sp[1-6])_(.*)",
+            "renamePattern": "$3"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 182
+      },
+      "id": 76,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:debug_.*sp.*)).*\",__name__=~\".*(?:sp4).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Subpack 4 status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug).*(sp[1-6])_(.*)",
+            "renamePattern": "$3"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 187
+      },
+      "id": 77,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:debug_.*sp.*)).*\",__name__=~\".*(?:sp5).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Subpack 5 status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug).*(sp[1-6])_(.*)",
+            "renamePattern": "$3"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 192
+      },
+      "id": 78,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:debug_.*sp.*)).*\",__name__=~\".*(?:sp6).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Subpack 6 status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug).*(sp[1-6])_(.*)",
+            "renamePattern": "$3"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 197
+      },
+      "id": 82,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "last_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:^(?:debug_7_fan_on|debug_7_pump_on)$).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Pump and fan",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(debug_[0-9a-fA-F])_(.*)_(.*)",
+            "renamePattern": "$2 on"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*Charger.*"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "string"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 11
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "11": {
+                        "color": "purple",
+                        "index": 3,
+                        "text": "Firmware"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "yellow",
+                        "index": 0,
+                        "text": "Idle"
+                      },
+                      "to": 1
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 2,
+                      "result": {
+                        "color": "green",
+                        "index": 1,
+                        "text": "Running"
+                      },
+                      "to": 4
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 5,
+                      "result": {
+                        "color": "red",
+                        "index": 2,
+                        "text": "Faulted"
+                      },
+                      "to": 11
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 201
+      },
+      "id": 94,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.96,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:(?:CHG[1-4].*state.*)).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Charger status",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CHG([1-4])_.*",
+            "renamePattern": "Charger $1"
+          }
+        }
+      ],
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "victoriametrics-clayton"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": 0
+              },
+              {
+                "color": "blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_hvil"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "HVIL is open"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_bms_overtemp"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Critical BMS temperature"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_cell_delta"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Critical cell delta"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_cell_overtemp"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Critical cell temperature"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_cont_failure"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Loss of contactor control"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_hcv"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Critical high cell voltage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_lcv"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Critical low cell voltage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_overcurrent"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Overcurrent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "debug_7_crit_too_many_dropped"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Too many dropped packs"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 207
+      },
+      "id": 83,
+      "maxDataPoints": 100,
+      "options": {
+        "colWidth": 0.95,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.3.0-39563863864",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "victoriametrics-clayton"
+          },
+          "editorMode": "code",
+          "expr": "max_over_time({job=\"${Battery}\",bus=\"CAN1\",__name__=~\".*(?:debug_7_crit).*\"}[$__interval]) keep_metric_names",
+          "instant": false,
+          "range": true,
+          "legendFormat": "{{__name__}}",
+          "refId": "A",
+          "hide": false
+        }
+      ],
+      "title": "${Battery} Criticals",
+      "type": "status-history"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 42,
+  "tags": [
+    "service",
+    "Locomotive",
+    "Clayton"
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "Battery",
+        "label": "Battery",
+        "description": "Locomotive battery (LB101-LB105)",
+        "type": "custom",
+        "query": "LB101,LB102,LB103,LB104,LB105",
+        "current": {
+          "text": "LB103",
+          "value": "LB103"
+        },
+        "options": [
+          {
+            "text": "LB101",
+            "value": "LB101",
+            "selected": false
+          },
+          {
+            "text": "LB102",
+            "value": "LB102",
+            "selected": false
+          },
+          {
+            "text": "LB103",
+            "value": "LB103",
+            "selected": true
+          },
+          {
+            "text": "LB104",
+            "value": "LB104",
+            "selected": false
+          },
+          {
+            "text": "LB105",
+            "value": "LB105",
+            "selected": false
+          }
+        ],
+        "includeAll": false,
+        "multi": false,
+        "hide": 0,
+        "skipUrlSync": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Locomotive batteries diagnostics dashboard",
+  "uid": "clayton-batteries",
+  "version": 1
+}

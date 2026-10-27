@@ -73,4 +73,4 @@ systemctl --user is-active clayton-ingest.timer
 REMOTE
 
 echo "Deployed Clayton $RELEASE_ID to $REMOTE_HOST:$REMOTE_RELEASE"
-echo "Reload Grafana datasource provisioning via its admin API; see deploy/README.md."
+REMOTE_HOST="$REMOTE_HOST" "$REPO_ROOT/scripts/deploy_clayton_dashboard.sh"
