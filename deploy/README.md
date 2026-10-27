@@ -87,7 +87,9 @@ VM retention is 10 years, **not** a disk quota. Monitor free disk during backfil
 be monitored/expanded. VM refuses writes below 10 GB free using
 `-storage.minFreeDiskSpaceBytes=10GB`; failed sends must not advance checkpoints.
 There is no automatic retention adjustment or downsampling. VM is limited to 1 GiB RAM / 1 CPU,
-MCP to 256 MiB / 0.5 CPU, ingestion to 1 GiB / 1 CPU (no swap). Containers
+MCP to 768 MiB / 0.5 CPU (Go memory target 512 MiB), ingestion to 1 GiB /
+1 CPU (no swap). Existing MCP instances use about 400-465 MiB; a 256 MiB
+cap prevents startup. Containers
 restart automatically; keep user systemd lingering enabled for unattended runs.
 
 ### Roll out Clayton only

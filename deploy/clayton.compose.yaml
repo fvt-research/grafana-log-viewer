@@ -20,13 +20,14 @@ services:
   mcp-clayton:
     image: ghcr.io/victoriametrics/mcp-victoriametrics:latest
     restart: unless-stopped
-    mem_limit: 256m
+    mem_limit: 768m
     cpus: 0.5
     environment:
       VM_INSTANCE_TYPE: single
       MCP_SERVER_MODE: http
       MCP_LISTEN_ADDR: ":8080"
       VM_INSTANCE_ENTRYPOINT: http://victoriametrics-clayton:8428
+      GOMEMLIMIT: 512MiB
     ports:
       - "127.0.0.1:9433:8080"
       - "${CLAYTON_BIND_IP:-127.0.0.1}:9433:8080"

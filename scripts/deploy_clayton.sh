@@ -54,9 +54,9 @@ if [[ -f "$HOME/.config/systemd/user/clayton-ingest.service" ]]; then
 fi
 "${compose[@]}" up -d --wait --wait-timeout 120
 curl --fail --silent --show-error --connect-timeout 5 --max-time 30 --retry 12 --retry-delay 5 \
-  --retry-connrefused http://127.0.0.1:8433/health
+  --retry-all-errors http://127.0.0.1:8433/health
 curl --fail --silent --show-error --connect-timeout 5 --max-time 30 --retry 12 --retry-delay 5 \
-  --retry-connrefused -H 'Content-Type: application/json' \
+  --retry-all-errors -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"clayton-deploy","version":"1"}}}' \
   http://127.0.0.1:9433/mcp
